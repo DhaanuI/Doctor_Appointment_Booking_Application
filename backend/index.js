@@ -8,10 +8,12 @@ app.use(express.json());
 
 app.use(cors())
 
+
 // importing necessary things from other files
 const { connection } = require("./config/db");
-const { userRoute } = require("./route/userRoute");
-
+const { patientRoute } = require("./route/patientRoute");
+const { doctorRoute } = require("./route/doctorRoute");
+const { appointmentRoute } = require("./route/appointmentRoute");
 
 
 // home route
@@ -20,10 +22,21 @@ app.get("/", async (req, res) => {
 })
 
 // redirect routes
-app.use("/users", userRoute)
+app.use("/patients", patientRoute)
+app.use("/doctors", doctorRoute)
+app.use("/appointments", appointmentRoute)
 
 
-app.listen(process.env.port, async (req, res) => {
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
+
+
+io.on('connection', (socket) => {
+
+})
+
+
+server.listen(process.env.port, async (req, res) => {
     try {
         await connection;   // connecting to Database
         console.log("DB is connected")

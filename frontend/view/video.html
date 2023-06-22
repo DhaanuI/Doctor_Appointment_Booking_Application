@@ -24,14 +24,14 @@
 
     const url = "https://pococare-assignment.vercel.app/"
     const backendURL = "https://pococare1.onrender.com/"
-    
+
     const socket = io(backendURL, {
         transports: ["websocket"]  //to avoid cors
     });
 
     document.getElementById("videobutton").addEventListener('click', async () => {
         try {
-            const response = await fetch(`${url}video`);
+            const response = await fetch(`${backendURL}video`);
             if (!response.ok) {
                 throw new Error('Request failed');
             }
@@ -39,12 +39,12 @@
             else {
                 const res = await response.json();
 
-                let resp = await fetch(`${url}email`, {
+                let resp = await fetch(`${backendURL}email`, {
                     method: "POST",
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ "email": localStorage.getItem("email"), "url": `${url}frontend/view/room.html?roomId=${res.roomId}` })
+                    body: JSON.stringify({ "email": localStorage.getItem("email"), "url": `${url}view/room.html?roomId=${res.roomId}` })
                 })
                 window.location.href = `${url}view/room.html?roomId=${res.roomId}`;
             }

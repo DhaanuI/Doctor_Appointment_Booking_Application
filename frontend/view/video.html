@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <button id="videobutton">start</button>
+</body>
+
+</html>
+
+<script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+    integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/peerjs@1.4.7/dist/peerjs.min.js"></script>
+
+
+<script>
+    const socket = io("http://localhost:8080", {
+        transports: ["websocket"]  //to avoid cors
+    });
+
+    document.getElementById("videobutton").addEventListener('click', async () => {
+        try {
+            const response = await fetch('http://localhost:8080/video');
+            if (!response.ok) {
+                throw new Error('Request failed');
+            }
+
+            const res = await response.json();
+            window.location.href = `http://127.0.0.1:5500/frontend/view/room.html?roomId=${res.roomId}`;
+
+        } catch (error) {
+            console.error(error);
+        }
+    });
+</script>

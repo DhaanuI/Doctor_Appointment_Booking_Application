@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-top: 50px;
+        }
+
+        .container {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 0 10px;
+        }
+
+        .form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .form input[type="text"],
+        .form input[type="password"],
+        .form select {
+            width: 98%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form button {
+            width: 100%;
+            font-size: 16px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #0056b3;
+        }
+
+        .form {
+            display: none
+        }
+
+        .role-buttons {
+            margin-top: 20px;
+        }
+
+        .role-buttons button {
+            font-size: 18px;
+            padding: 12px 20px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            background-color: #007bff;
+            transition: background-color 0.3s ease;
+        }
+
+        .role-buttons button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+
+<body>
+    <h1>Welcome to Doctor's Appointment Booking Application</h1>
+
+    <div class="role-buttons">
+        <button onclick="showDoctorForm()">Doctor</button>
+        <button onclick="showPatientForm()">Patient</button>
+    </div>
+    <div class="container">
+        <div class="form" id="doctorForm">
+            <h2>Doctor Signup</h2>
+            <form action="" method="">
+                <label for="doctorName">Name</label>
+                <input type="text" id="doctorName" name="name" required>
+                <label for="doctorEmail">Email</label>
+                <input type="text" id="doctorEmail" name="email" required>
+                <label for="doctorPassword">Password</label>
+                <input type="password" id="doctorPassword" name="password" required>
+                <label for="doctorSpecialisation">Specialisation</label>
+                <select id="doctorSpecialisation" name="specialisation" required>
+                    <option value="heart">Heart</option>
+                    <option value="kidney">Kidney</option>
+                    <option value="general">General</option>
+                </select>
+                <button type="submit">Signup</button>
+            </form>
+        </div>
+        <div class="form" id="patientForm">
+            <h2>Patient Signup</h2>
+            <form action="" method="">
+                <label for="patientName">Name</label>
+                <input type="text" id="patientName" name="name" required>
+                <label for="patientEmail">Email</label>
+                <input type="text" id="patientEmail" name="email" required>
+                <label for="patientPassword">Password</label>
+                <input type="password" id="patientPassword" name="password" required>
+                <button type="submit">Signup</button>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+    function showDoctorForm() {
+        document.getElementById('doctorForm').style.display = 'block';
+        document.getElementById('patientForm').style.display = 'none';
+    }
+
+    function showPatientForm() {
+        document.getElementById('doctorForm').style.display = 'none';
+        document.getElementById('patientForm').style.display = 'block';
+    }
+</script>

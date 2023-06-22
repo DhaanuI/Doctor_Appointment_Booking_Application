@@ -5,6 +5,7 @@ require("dotenv").config();
 const cors = require("cors")
 const app = express();
 app.use(express.json());
+const { v4: uuidV4 } = require("uuid")
 
 app.use(cors())
 
@@ -26,13 +27,26 @@ app.use("/patients", patientRoute)
 app.use("/doctors", doctorRoute)
 app.use("/appointments", appointmentRoute)
 
+app.get('/video', (req, res) => {
+    res.redirect(`/video/${uuidV4()}`)
+})
+
+app.get('/video/:room', (req, res) => {
+    res.send({ roomId: req.params.room })
+})
 
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
 
 io.on('connection', (socket) => {
-
+    socket.on('join-room', (roomId, userId) => {
+        socket.join(roomId)
+        socket.to(roomId).emit('user-connected', userId)
+        socket.on('disconnect', () => {
+            socket.emit('user-disconnected', userId)
+        })
+    })
 })
 
 

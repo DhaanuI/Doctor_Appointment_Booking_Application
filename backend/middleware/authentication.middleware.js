@@ -10,7 +10,7 @@ const authenticate = (req, res, next) => {
 
         let decoded = jwt.verify(token, process.env.key);
         if (decoded) {
-            req.body.userID = decoded.userID.toString();
+            req.body.userID = decoded.patientID.toString();
             next()
         }
         else {

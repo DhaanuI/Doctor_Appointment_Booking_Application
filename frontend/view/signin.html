@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN_Page</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-top: 50px;
+        }
+
+        .container {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form {
+            width: 400px;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 0 10px;
+        }
+
+        .form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .form input[type="text"],
+        .form input[type="password"] {
+            width: 98%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form button {
+            width: 100%;
+            font-size: 16px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Doctor's Appointment Booking Application</h1>
+    <div class="container">
+        <div class="form patient">
+            <h2>Login as Patient</h2>
+            <form action="">
+                <label for="patientEmail">Email</label>
+                <input type="text" id="patientEmail" name="email" required>
+                <label for="patientPassword">Password</label>
+                <input type="password" id="patientPassword" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div class="form doctor">
+            <h2>Login as Doctor</h2>
+            <form action="">
+                <label for="doctorEmail">Email</label>
+                <input type="text" id="doctorEmail" name="email" required>
+                <label for="doctorPassword">Password</label>
+                <input type="password" id="doctorPassword" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    const patientForm = document.querySelector(".patient");
+
+    patientForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        let enteredEmail = document.getElementById("patientEmail").value
+        let enteredPass = document.getElementById("patientPassword").value
+
+        if (enteredEmail == "" || enteredPass == "") {
+            return alert("Enter all the fields")
+        }
+        let obj = {
+            email: enteredEmail,
+            password: enteredPass
+        }
+
+        let verifyingLogin = await fetch("http://localhost:8080/patients/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        })
+
+        let res = await verifyingLogin.json()
+
+        if (res.token) {
+            let token = res.token;
+            localStorage.setItem("token", token)
+            localStorage.setItem("name", res.name)
+            localStorage.setItem("id", res.id)
+            alert(res.message)
+            enteredEmail == "" 
+            enteredPass == ""
+
+            window.location.href = "http://127.0.0.1:5500/frontend/view/patientdashboard.html"
+        }
+        else {
+            alert(res.message)
+        }
+    })
+
+
+    const doctorForm = document.querySelector(".doctor");
+
+    doctorForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        let enteredEmail = document.getElementById("doctorEmail").value
+        let enteredPass = document.getElementById("doctorPassword").value
+
+        if (enteredEmail == "" || enteredPass == "") {
+            return alert("Enter all the fields")
+        }
+        let obj = {
+            email: enteredEmail,
+            password: enteredPass
+        }
+
+        let verifyingLogin = await fetch("http://localhost:8080/doctors/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(obj)
+        })
+
+        let res = await verifyingLogin.json()
+
+        if (res.token) {
+            let token = res.token;
+            localStorage.setItem("token", token)
+            localStorage.setItem("name", res.name)
+
+            alert(res.message)
+            doctorForm.reset()
+        }
+        else {
+            alert(res.message)
+        }
+    })
+
+
+
+</script>

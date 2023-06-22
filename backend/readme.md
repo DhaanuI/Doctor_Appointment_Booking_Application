@@ -15,3 +15,14 @@ able to cancel or reschedule appointment
 case 2:
 once doctor logs in:
 he/she can see their appointments with patients
+
+
+
+here1
+open
+here10
+here2
+
+here3
+here7
+here8

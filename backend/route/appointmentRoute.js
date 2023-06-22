@@ -8,13 +8,75 @@ const appointmentRoute = express.Router();
 appointmentRoute.use(express.json());
 appointmentRoute.use(authenticate);
 
-appointmentRoute.get("/", async (req, res) => {
 
+appointmentRoute.get("/", async (req, res) => {
+    try {
+        let data = await AppointmentModel.find().populate("patientId doctorId")
+        res.status(200).send({ "ALL Appointments": data })
+    }
+    catch (err) {
+        res.status(404).send({ "ERROR": err })
+    }
+})
+
+appointmentRoute.get("/docapp/:id", async (req, res) => {
+    const ID = req.params.id;
+    try {
+        let data = await AppointmentModel.find({ doctorId: ID }).populate("doctorId patientId")
+        res.status(200).send({ "Appointments by Doctor": data })
+    }
+    catch (err) {
+        res.status(500).send({ "ERROR": err })
+    }
+})
+
+
+appointmentRoute.get("/patapp/:id", async (req, res) => {
+    const ID = req.params.id;
+    try {
+        let data = await AppointmentModel.find({ patientId: ID }).populate("doctorId patientId")
+        res.status(200).send({ "Appointments": data })
+    }
+    catch (err) {
+        res.status(500).send({ "ERROR": err })
+    }
 })
 
 
 appointmentRoute.post("/add", async (req, res) => {
+    const { doctorId, date, startTime, endTime, patientId } = req.body;
+    try {
+        // Check if the requested time slot is already booked
+        const isSlotBooked = await AppointmentModel.exists({
+            doctorId,
+            date,
+            $or: [
+                { startTime: { $lt: endTime, $gte: startTime } },
+                { endTime: { $gt: startTime, $lte: endTime } }
+            ]
+        });
 
+        console.log(isSlotBooked)
+
+        if (isSlotBooked) {
+            return res.status(409).send({ error: 'Time slot not available. Please choose a different time.' });
+        }
+
+        // Create a new appointment
+        const appointment = new AppointmentModel({
+            doctorId,
+            patientId,
+            date,
+            startTime,
+            endTime
+        });
+
+        await appointment.save();
+        res.send({ "message": 'Appointment booked successfully' });
+    } catch (error) {
+        console.log(error)
+        res.status(500).send({ "error": 'An error occurred while booking the appointment' });
+    }
 })
 
 

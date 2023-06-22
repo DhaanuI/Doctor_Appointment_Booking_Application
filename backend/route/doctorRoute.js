@@ -15,7 +15,7 @@ const { DoctorModel } = require("../model/DoctorModel");
 
 // to register doctor and then hashing password using Bcrypt
 doctorRoute.post("/register", async (req, res) => {
-    const { name, email, password, role, specialization } = req.body
+    const { name, email, password, role, specialization, image } = req.body
     const doctorFound = await DoctorModel.findOne({ email })
     if (doctorFound) {
         res.status(409)({ "message": "Already doctor registered" })
@@ -25,7 +25,7 @@ doctorRoute.post("/register", async (req, res) => {
             let dateFormat = moment().format('D-MM-YYYY');
 
             bcrypt.hash(password, 5, async function (err, hash) {
-                const data = new DoctorModel({ name, email, password: hash, registeredDate: dateFormat, role, specialization })
+                const data = new DoctorModel({ name, email, password: hash, image, registeredDate: dateFormat, role, specialization })
                 await data.save()
                 res.status(201).send({ "message": "doctor registered" })
             });
@@ -45,7 +45,13 @@ doctorRoute.post("/login", async (req, res) => {
             if (result) {
                 var token = jwt.sign({ doctorID: data._id }, process.env.key, { expiresIn: 60 * 30 });
                 var refreshtoken = jwt.sign({ doctorID: data._id }, process.env.key, { expiresIn: 60 * 90 });
-                res.status(201).send({ "message": "Validation done", "token": token, "refresh": refreshtoken })
+                res.status(201).send({
+                    "message": "Validation done",
+                    "token": token,
+                    "refresh": refreshtoken,
+                    "name": data.name,
+                    "id": data._id
+                })
             }
             else {
                 res.status(401).send({ "message": "INVALID credentials" })
@@ -53,12 +59,12 @@ doctorRoute.post("/login", async (req, res) => {
         });
     }
     catch (err) {
-        res.status(500)({ "ERROR": err })
+        res.status(500).send({ "ERROR": err })
     }
 })
 
 
-doctorRoute.patch("/update/:id", authorise(["admin"]), async (req, res) => {
+doctorRoute.patch("/update/:id", async (req, res) => {
     const ID = req.params.id;
     const payload = req.body;
     try {
@@ -71,7 +77,7 @@ doctorRoute.patch("/update/:id", authorise(["admin"]), async (req, res) => {
     }
 })
 
-doctorRoute.delete("/delete/:id", authorise(["admin"]), async (req, res) => {
+doctorRoute.delete("/delete/:id", async (req, res) => {
     const ID = req.params.id;
 
     try {
@@ -90,9 +96,8 @@ doctorRoute.get("/all", async (req, res) => {
         res.status(200).send({ "Doctors": data })
     }
     catch (err) {
-        res.status(500)({ "ERROR": err })
+        res.status(500).send({ "ERROR": err })
     }
-
 })
 
 

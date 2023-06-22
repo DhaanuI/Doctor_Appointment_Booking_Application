@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Booking Application</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-top: 50px;
+        }
+
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        div {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to Doctor's Appointment Booking Application</h1>
+    <div>
+        <button id="login">LOGIN</button>
+
+        <button id="signup">SIGNUP</button>
+    </div>
+</body>
+
+</html>
+
+<script>
+    const signup = document.getElementById("signup")
+
+    signup.addEventListener("click", () => {
+        window.location.href = "http://127.0.0.1:5500/frontend/view/signup.html"
+    })
+
+
+
+    const login = document.getElementById("login")
+
+    login.addEventListener("click", () => {
+        window.location.href = "http://127.0.0.1:5500/frontend/view/signin.html"
+    })
+</script>

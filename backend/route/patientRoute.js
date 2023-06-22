@@ -19,7 +19,7 @@ patientRoute.post("/register", async (req, res) => {
     const { name, email, password, role } = req.body
     const patientFound = await PatientModel.findOne({ email })
     if (patientFound) {
-        res.status(409)({ "message": "Already patient registered" })
+        res.status(409).send({ "message": "Already patient registered" })
     }
     else {
         try {
@@ -32,10 +32,11 @@ patientRoute.post("/register", async (req, res) => {
             });
         }
         catch (err) {
-            res.status(500)({ "ERROR": err })
+            res.status(500).send({ "ERROR": err })
         }
     }
 })
+
 
 // to let patient login and then create and send token as response
 patientRoute.post("/login", async (req, res) => {
@@ -44,9 +45,15 @@ patientRoute.post("/login", async (req, res) => {
     try {
         bcrypt.compare(password, data.password, function (err, result) {
             if (result) {
-                var token = jwt.sign({ patientID: data._id }, process.env.key, { expiresIn: 60 * 30 });
-                var refreshtoken = jwt.sign({ patientID: data._id }, process.env.key, { expiresIn: 60 * 90 });
-                res.status(201).send({ "message": "Validation done", "token": token, "refresh": refreshtoken })
+                var token = jwt.sign({ patientID: data._id }, process.env.key, { expiresIn: 60 * 100 });
+                var refreshtoken = jwt.sign({ patientID: data._id }, process.env.key, { expiresIn: 60 * 500 });
+                res.status(201).send({
+                    "message": "Validation done",
+                    "token": token,
+                    "refresh": refreshtoken,
+                    "name": data.name,
+                    "id": data._id
+                })
             }
             else {
                 res.status(401).send({ "message": "INVALID credentials" })
@@ -54,7 +61,7 @@ patientRoute.post("/login", async (req, res) => {
         });
     }
     catch (err) {
-        res.status(500)({ "ERROR": err })
+        res.status(500).send({ "ERROR": err })
     }
 })
 
@@ -72,6 +79,8 @@ patientRoute.patch("/update/:id", async (req, res) => {
     }
 })
 
+
+
 patientRoute.delete("/delete/:id", async (req, res) => {
     const ID = req.params.id;
 
@@ -84,6 +93,19 @@ patientRoute.delete("/delete/:id", async (req, res) => {
         res.send({ "message": "error" })
     }
 })
+
+
+
+patientRoute.get("/all", async (req, res) => {
+    try {
+        let data = await PatientModel.find()
+        res.status(200).send({ "Patients": data })
+    }
+    catch (err) {
+        res.status(500).send({ "ERROR": err })
+    }
+})
+
 
 
 // implementing logout using redis

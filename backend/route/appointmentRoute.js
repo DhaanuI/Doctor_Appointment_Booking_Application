@@ -23,7 +23,7 @@ appointmentRoute.get("/docapp/:id", async (req, res) => {
     const ID = req.params.id;
     try {
         let data = await AppointmentModel.find({ doctorId: ID }).populate("doctorId patientId")
-        res.status(200).send({ "Appointments by Doctor": data })
+        res.status(200).send({ "Appointments": data })
     }
     catch (err) {
         res.status(500).send({ "ERROR": err })

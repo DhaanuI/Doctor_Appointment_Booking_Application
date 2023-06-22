@@ -11,7 +11,7 @@ require("dotenv").config();
 const { authorise } = require("../authorize")
 const { client } = require("../config/db")
 const { DoctorModel } = require("../model/DoctorModel");
-
+const { authenticate } = require("../middleware/authentication.middleware")
 
 // to register doctor and then hashing password using Bcrypt
 doctorRoute.post("/register", async (req, res) => {
@@ -43,8 +43,8 @@ doctorRoute.post("/login", async (req, res) => {
     try {
         bcrypt.compare(password, data.password, function (err, result) {
             if (result) {
-                var token = jwt.sign({ doctorID: data._id }, process.env.key, { expiresIn: 60 * 30 });
-                var refreshtoken = jwt.sign({ doctorID: data._id }, process.env.key, { expiresIn: 60 * 90 });
+                var token = jwt.sign({ doctorID: data._id }, process.env.key);
+                var refreshtoken = jwt.sign({ doctorID: data._id }, process.env.key, { expiresIn: 60 * 1000 });
                 res.status(201).send({
                     "message": "Validation done",
                     "token": token,
@@ -100,13 +100,16 @@ doctorRoute.get("/all", async (req, res) => {
     }
 })
 
+doctorRoute.use(authenticate);
 
-// implementing logout using redis
+
 doctorRoute.post("/logout", async (req, res) => {
     const token = req.headers.authorization
     if (token) {
-        // <------------ REDIS usage
-        await client.sadd("keyname", token)
+        const blacklistedData = JSON.parse(fs.readFileSync("./blacklist.json", "utf-8"))
+        blacklistedData.push(token)
+
+        fs.writeFileSync("./blacklist.json", JSON.stringify(blacklistedData))
         res.send({ "message": "Logout done successfully" })
     }
     else {

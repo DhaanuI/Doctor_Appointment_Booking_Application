@@ -16,7 +16,7 @@ const { authorise } = require("../authorize")
 
 // to register patient and then hashing password using Bcrypt
 patientRoute.post("/register", async (req, res) => {
-    const { name, email, password, role } = req.body
+    const { name, email, password, role, image } = req.body
     const patientFound = await PatientModel.findOne({ email })
     if (patientFound) {
         res.status(409).send({ "message": "Already patient registered" })
@@ -26,7 +26,7 @@ patientRoute.post("/register", async (req, res) => {
             let dateFormat = moment().format('D-MM-YYYY');
 
             bcrypt.hash(password, 5, async function (err, hash) {
-                const data = new PatientModel({ name, email, password: hash, registeredDate: dateFormat, role })
+                const data = new PatientModel({ name, email, password: hash, image, registeredDate: dateFormat, role })
                 await data.save()
                 res.status(201).send({ "message": "patient registered" })
             });
@@ -45,8 +45,8 @@ patientRoute.post("/login", async (req, res) => {
     try {
         bcrypt.compare(password, data.password, function (err, result) {
             if (result) {
-                var token = jwt.sign({ patientID: data._id }, process.env.key, { expiresIn: 60 * 100 });
-                var refreshtoken = jwt.sign({ patientID: data._id }, process.env.key, { expiresIn: 60 * 500 });
+                var token = jwt.sign({ patientID: data._id }, process.env.key);
+                var refreshtoken = jwt.sign({ patientID: data._id }, process.env.key, { expiresIn: 60 * 1000 });
                 res.status(201).send({
                     "message": "Validation done",
                     "token": token,
@@ -107,19 +107,20 @@ patientRoute.get("/all", async (req, res) => {
 })
 
 
-
-// implementing logout using redis
 patientRoute.post("/logout", async (req, res) => {
     const token = req.headers.authorization
     if (token) {
-        // <------------ REDIS usage
-        await client.sadd("keyname", token)
+        const blacklistedData = JSON.parse(fs.readFileSync("./blacklist.json", "utf-8"))
+        blacklistedData.push(token)
+
+        fs.writeFileSync("./blacklist.json", JSON.stringify(blacklistedData))
         res.send({ "message": "Logout done successfully" })
     }
     else {
         res.send({ "message": "Please login" })
     }
 })
+
 
 module.exports = {
     patientRoute

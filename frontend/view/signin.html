@@ -124,7 +124,7 @@
             localStorage.setItem("name", res.name)
             localStorage.setItem("id", res.id)
             alert(res.message)
-            enteredEmail == "" 
+            enteredEmail == ""
             enteredPass == ""
 
             window.location.href = "http://127.0.0.1:5500/frontend/view/patientdashboard.html"
@@ -164,9 +164,12 @@
             let token = res.token;
             localStorage.setItem("token", token)
             localStorage.setItem("name", res.name)
-
+            localStorage.setItem("id", res.id)
             alert(res.message)
-            doctorForm.reset()
+            enteredEmail == ""
+            enteredPass == ""
+
+            window.location.href = "http://127.0.0.1:5500/frontend/view/doctordashboard.html"
         }
         else {
             alert(res.message)

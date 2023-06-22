@@ -110,11 +110,6 @@
             margin-bottom: 10px;
         }
 
-        /* .appointment-info {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-        } */
-
 
         .appointment-info div {
             display: flex;
@@ -142,14 +137,29 @@
             font-size: 20px;
             margin-top: 60px
         }
+
+        button {
+            cursor: pointer
+        }
+
+        .navbar div {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .navbar h2 {
+            margin-right: 10px
+        }
     </style>
 </head>
 
 <body>
     <div class="navbar">
         <h1>Patient Dashboard</h1>
+
+
         <div>
-            <span class="patient-name"></span>
+            <h2 class="patient-name"></h2>
             <button class="logout-btn">Logout</button>
         </div>
     </div>
@@ -179,7 +189,14 @@
 </html>
 <script>
 
+    if (!localStorage.getItem("token")) {
+        alert("Please login")
+        window.location.href = "http://127.0.0.1:5500/frontend/view/signin.html"
+    }
 
+
+    console.log(localStorage.getItem('name'))
+    document.querySelector(".patient-name").innerHTML = localStorage.getItem('name')
 
     const id = localStorage.getItem('id')
     async function fetchAppointments(id) {
@@ -210,7 +227,7 @@
             appointmentInfoContainer.textContent = 'No Appointments';
         } else {
             appointmentInfoContainer.innerHTML = '';
-
+            console.log(appointments)
             appointments.forEach(appointment => {
                 let appDiv = document.createElement("div")
                 const dateString = appointment.date;
@@ -230,6 +247,12 @@
                 const editAppointmentBtn = document.createElement('button');
                 editAppointmentBtn.className = 'edit-appointment-btn';
                 editAppointmentBtn.textContent = 'Edit';
+
+                editAppointmentBtn.addEventListener('click', () => {
+
+                    openModal(appointment._id, "patch");
+                });
+
 
                 const cancelAppointmentBtn = document.createElement('button');
                 cancelAppointmentBtn.className = 'cancel-appointment-btn';
@@ -264,6 +287,8 @@
                             });
                     }
                 });
+
+
                 appDiv.append(docImage, appointmentInfo, editAppointmentBtn, cancelAppointmentBtn)
 
                 appointmentInfoContainer.append(appDiv)
@@ -320,7 +345,7 @@
             bookButton.textContent = 'Book Appointment';
             bookButton.addEventListener('click', function () {
                 console.log("cliked")
-                openModal(doctor._id);
+                openModal(doctor._id, "post");
             });
             doctorCard.appendChild(bookButton);
 
@@ -332,9 +357,7 @@
     fetchDoctors();
 
 
-    function openModal(doctorId) {
-
-
+    function openModal(doctorId, string) {
         const modal = document.createElement('div');
         modal.id = 'modal';
         modal.className = 'modal';
@@ -459,25 +482,53 @@
             console.log(data)
             const token = localStorage.getItem("token")
             // Perform the fetch request to add the appointment
-            fetch('http://localhost:8080/appointments/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': token
-                },
-                body: JSON.stringify(data)
-            })
-                .then(response => response.json())
-                .then(result => {
-                    console.log('Appointment added successfully:', result);
-                    alert("Appointment added successfully")
-                    closeModal();
-                    fetchAppointments(id)
+            if (string == "post") {
+                fetch('http://localhost:8080/appointments/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify(data)
                 })
-                .catch(error => {
-                    console.error('Error adding appointment:', error);
-                    closeModal();
-                });
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Appointment added successfully:', result);
+                        alert("Appointment added successfully")
+                        closeModal();
+                        fetchAppointments(id)
+                    })
+                    .catch(error => {
+                        console.error('Error adding appointment:', error);
+                        closeModal();
+                    });
+            }
+            else if (string == "patch") {
+                const data = {
+                    date: selectedDate,
+                    startTime: start,
+                    endTime: endTime,
+                };
+                fetch(`http://localhost:8080/appointments/update/${doctorId}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log('Appointment modified successfully:', result);
+                        alert("Appointment modified successfully")
+                        closeModal();
+                        fetchAppointments(id)
+                    })
+                    .catch(error => {
+                        console.error('Error modifying appointment:', error);
+                        closeModal();
+                    });
+            }
         });
     }
 
@@ -487,5 +538,34 @@
             modal.remove();
         }
     }
+
+
+    const logoutButton = document.querySelector('.logout-btn');
+
+    logoutButton.addEventListener('click', () => {
+        const token = localStorage.getItem('token');
+
+        localStorage.removeItem('token');
+        localStorage.removeItem('name');
+        localStorage.removeItem('id');
+
+        fetch('http://localhost:8080/patients/logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = 'http://127.0.0.1:5500/frontend/view/signin.html';
+                } else {
+                    console.log('Logout request failed.');
+                }
+            })
+            .catch(error => {
+                console.log('An error occurred during logout:', error);
+            });
+    });
 
 </script>

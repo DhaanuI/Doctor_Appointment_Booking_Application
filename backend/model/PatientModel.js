@@ -5,7 +5,8 @@ const patientSchema = mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     registeredDate: { type: String },            // note down the date registered
-    role: { type: String, default: "patient" }
+    role: { type: String, default: "patient" },
+    image:String
 })
 
 const PatientModel = mongoose.model("patient", patientSchema)

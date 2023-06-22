@@ -1,5 +1,8 @@
 const url = "https://pococare-assignment.vercel.app/"
 
+const backendURL = "https://pococare1.onrender.com/"
+
+
 if (!localStorage.getItem("token")) {
     alert("Please login")
     window.location.href = `${url}frontend / view / signin.html}`
@@ -12,7 +15,7 @@ async function fetchAppointments(id) {
     try {
         const token = localStorage.getItem('token');
 
-        const response = await fetch(`http://localhost:8080/appointments/patapp/${id}`, {
+        const response = await fetch(`${backendURL}appointments/patapp/${id}`, {
             method: "GET",
             headers: {
                 Authorization: token,
@@ -72,7 +75,7 @@ function renderAppointments(appointments) {
                     const token = localStorage.getItem('token');
 
                     // Make the fetch request to delete the appointment
-                    fetch(`http://localhost:8080/appointments/delete/${appointmentId}`, {
+                    fetch(`${backendURL}appointments/delete/${appointmentId}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': token
@@ -107,7 +110,7 @@ function renderAppointments(appointments) {
 
 async function fetchDoctors() {
     try {
-        const response = await fetch('http://localhost:8080/doctors/all');
+        const response = await fetch(`${backendURL}doctors/all`);
         const data = await response.json();
         console.log(data)
         renderDoctors(data.Doctors);
@@ -300,7 +303,7 @@ function openModal(doctorId, string) {
         const token = localStorage.getItem("token")
         // Perform the fetch request to add the appointment
         if (string == "post") {
-            fetch('http://localhost:8080/appointments/add', {
+            fetch(`${backendURL}appointments/add`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -326,7 +329,7 @@ function openModal(doctorId, string) {
                 startTime: start,
                 endTime: endTime,
             };
-            fetch(`http://localhost:8080/appointments/update/${doctorId}`, {
+            fetch(`${backendURL}appointments/update/${doctorId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -366,7 +369,7 @@ logoutButton.addEventListener('click', () => {
     localStorage.removeItem('name');
     localStorage.removeItem('id');
 
-    fetch('http://localhost:8080/patients/logout', {
+    fetch(`${backendURL}patients/logout`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

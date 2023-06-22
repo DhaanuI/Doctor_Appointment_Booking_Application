@@ -1,5 +1,6 @@
 const url = "https://pococare-assignment.vercel.app/"
 
+const backendURL = "https://pococare1.onrender.com/"
 
 if (!localStorage.getItem("token")) {
     alert("Please login")
@@ -13,7 +14,7 @@ async function fetchAppointments(id) {
     try {
         const token = localStorage.getItem('token');
 
-        const response = await fetch(`http://localhost:8080/appointments/docapp/${id}`, {
+        const response = await fetch(`${backendURL}appointments/docapp/${id}`, {
             method: "GET",
             headers: {
                 Authorization: token,
@@ -63,11 +64,10 @@ function renderAppointments(appointments) {
             cancelAppointmentBtn.addEventListener('click', () => {
                 const confirmDelete = confirm('Are you sure you want to delete this appointment?');
                 if (confirmDelete) {
-                    const appointmentId = appointment._id; // Replace "id" with the actual property name holding the appointment ID
+                    const appointmentId = appointment._id;
                     const token = localStorage.getItem('token');
 
-                    // Make the fetch request to delete the appointment
-                    fetch(`http://localhost:8080/appointments/delete/${appointmentId}`, {
+                    fetch(`${backendURL}appointments/delete/${appointmentId}`, {
                         method: 'DELETE',
                         headers: {
                             'Authorization': token
@@ -75,12 +75,10 @@ function renderAppointments(appointments) {
                     })
                         .then(response => {
                             if (response.ok) {
-                                // Appointment successfully deleted, perform any necessary actions
                                 console.log('Appointment deleted');
                                 alert('Appointment deleted')
                                 fetchAppointments()
                             } else {
-                                // Handle error case if needed
                                 console.error('Failed to delete appointment');
                             }
                         })
@@ -89,7 +87,6 @@ function renderAppointments(appointments) {
                         });
                 }
             });
-
 
             appDiv.append(patientImage, appointmentInfo, cancelAppointmentBtn)
 
@@ -108,7 +105,7 @@ logoutButton.addEventListener('click', () => {
     localStorage.removeItem('name');
     localStorage.removeItem('id');
 
-    fetch('http://localhost:8080/doctors/logout', {
+    fetch(`${backendURL}doctors/logout`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

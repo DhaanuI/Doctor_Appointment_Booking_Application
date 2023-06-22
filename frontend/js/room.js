@@ -1,4 +1,4 @@
-const socket = io("http://localhost:8080", {
+const socket = io("https://pococare1.onrender.com/", {
     transports: ["websocket"]  //to avoid cors
 });
 
@@ -12,7 +12,7 @@ const ROOM_ID = searchParams.get('roomId');
 
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
-    host: '/',
+    host: 'https://pococare1.onrender.com/',
     port: '8081'
 })
 

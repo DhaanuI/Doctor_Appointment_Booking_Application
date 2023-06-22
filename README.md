@@ -43,8 +43,13 @@ If you are a Patient
 
 ![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/0d266a7b-6265-47dd-bd84-8057238956cb)
 
-# You can also click For VIDEO CONSULTATION which will redirect to another page which is a ROOM where Patient and Doctor can have a meet via Video
-# Once the patient started the Video, It will trigger an email to DOCTOR with the MEETING LINK so DOCTOR can IMMEDIATELY JOIN.
+
+
+
+
+ You can also click For VIDEO CONSULTATION which will redirect to another page which is a ROOM where Patient and Doctor can have a meet via Video**
+
+ Once the patient started the Video, It will trigger an email to DOCTOR with the MEETING LINK so DOCTOR can IMMEDIATELY JOIN**
 
 
 
@@ -91,6 +96,8 @@ api - https://pococare1.onrender.com/
 | DELETE | api/appointments/delete/:id | To delete appointment
 | GET | api/appointments/docapp/:id | To get the appointments based on specific Doctor | 200
 | GET | api/appointments/patapp/:id | To get the appointments based on specific Patient | 200
+
+
 
 
 

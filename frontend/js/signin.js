@@ -41,7 +41,7 @@ patientForm.addEventListener("submit", async (e) => {
         window.location.href = `${url}view/patientdashboard.html`
     }
     else {
-        alert(res.message)
+        res.message ? alert("Invalid Credentials") : alert("Invalid Credentials")
     }
 })
 
@@ -83,7 +83,7 @@ doctorForm.addEventListener("submit", async (e) => {
         window.location.href = `${url}view/doctordashboard.html`
     }
     else {
-        alert(res.message)
+        res.message ? alert("Invalid Credentials") : alert("Invalid Credentials")
     }
 })
 

@@ -46,6 +46,8 @@
                     },
                     body: JSON.stringify({ "email": localStorage.getItem("email"), "url": `${url}view/room.html?roomId=${res.roomId}` })
                 })
+
+                alert("Doctor will receive an email with the Meeting Link")
                 window.location.href = `${url}view/room.html?roomId=${res.roomId}`;
             }
 

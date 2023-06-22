@@ -1,7 +1,9 @@
+const url = "https://pococare-assignment.vercel.app/"
+
 
 if (!localStorage.getItem("token")) {
     alert("Please login")
-    window.location.href = "http://127.0.0.1:5500/frontend/view/signin.html"
+    window.location.href = `${url}frontend/view/signin.html`;
 }
 
 document.querySelector(".doctor-name").innerHTML = localStorage.getItem('name')
@@ -115,7 +117,7 @@ logoutButton.addEventListener('click', () => {
     })
         .then(response => {
             if (response.ok) {
-                window.location.href = 'http://127.0.0.1:5500/frontend/view/signin.html';
+                window.location.href = `${url}frontend/view/signin.html`;
             } else {
                 console.log('Logout request failed.');
             }

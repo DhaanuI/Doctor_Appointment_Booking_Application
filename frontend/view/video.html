@@ -21,6 +21,9 @@
 
 
 <script>
+
+    const url = "https://pococare-assignment.vercel.app/"
+
     const socket = io("http://localhost:8080", {
         transports: ["websocket"]  //to avoid cors
     });
@@ -40,9 +43,9 @@
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ "email": localStorage.getItem("email"), "url": `http://127.0.0.1:5500/frontend/view/room.html?roomId=${res.roomId}` })
+                    body: JSON.stringify({ "email": localStorage.getItem("email"), "url": `${url}frontend/view/room.html?roomId=${res.roomId}` })
                 })
-                window.location.href = `http://127.0.0.1:5500/frontend/view/room.html?roomId=${res.roomId}`;
+                window.location.href = `${url}frontend/view/room.html?roomId=${res.roomId}`;
             }
 
         } catch (error) {

@@ -71,10 +71,9 @@ function renderAppointments(appointments) {
             cancelAppointmentBtn.addEventListener('click', () => {
                 const confirmDelete = confirm('Are you sure you want to delete this appointment?');
                 if (confirmDelete) {
-                    const appointmentId = appointment._id; // Replace "id" with the actual property name holding the appointment ID
+                    const appointmentId = appointment._id; 
                     const token = localStorage.getItem('token');
 
-                    // Make the fetch request to delete the appointment
                     fetch(`${backendURL}appointments/delete/${appointmentId}`, {
                         method: 'DELETE',
                         headers: {
@@ -83,12 +82,10 @@ function renderAppointments(appointments) {
                     })
                         .then(response => {
                             if (response.ok) {
-                                // Appointment successfully deleted, perform any necessary actions
                                 console.log('Appointment deleted');
                                 alert('Appointment deleted')
                                 fetchAppointments()
                             } else {
-                                // Handle error case if needed
                                 console.error('Failed to delete appointment');
                             }
                         })
@@ -97,10 +94,7 @@ function renderAppointments(appointments) {
                         });
                 }
             });
-
-
             appDiv.append(docImage, appointmentInfo, editAppointmentBtn, cancelAppointmentBtn)
-
             appointmentInfoContainer.append(appDiv)
         });
     }
@@ -157,9 +151,7 @@ function renderDoctors(doctors) {
 
         videoCall.addEventListener('click', function () {
             localStorage.setItem("email", doctor.email)
-            window.location.href = `${url}frontend / view / video.html`
-
-
+            window.location.href = `${url}view/video.html`
         });
 
         const bookButton = document.createElement('button');
@@ -238,10 +230,8 @@ function openModal(doctorId, string) {
     modalClose.addEventListener('click', closeModal);
     const datePicker = document.getElementById("my-date-picker");
 
-    // Get the current date
     const today = new Date().toISOString().split("T")[0];
 
-    // Set the minimum date for the date picker
     datePicker.setAttribute("min", today);
 
     const confirmBtn = document.getElementById('book-appointment-btn');
@@ -301,7 +291,6 @@ function openModal(doctorId, string) {
         };
 
         const token = localStorage.getItem("token")
-        // Perform the fetch request to add the appointment
         if (string == "post") {
             fetch(`${backendURL}appointments/add`, {
                 method: 'POST',

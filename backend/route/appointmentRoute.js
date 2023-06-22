@@ -46,7 +46,6 @@ appointmentRoute.get("/patapp/:id", async (req, res) => {
 appointmentRoute.post("/add", async (req, res) => {
     const { doctorId, date, startTime, endTime, patientId } = req.body;
     try {
-        // Check if the requested time slot is already booked
         const isSlotBooked = await AppointmentModel.exists({
             doctorId,
             date,
@@ -62,7 +61,6 @@ appointmentRoute.post("/add", async (req, res) => {
             return res.status(409).send({ error: 'Time slot not available. Please choose a different time.' });
         }
 
-        // Create a new appointment
         const appointment = new AppointmentModel({
             doctorId,
             patientId,

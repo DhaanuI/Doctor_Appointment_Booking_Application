@@ -30,9 +30,6 @@
 
 </html>
 
-
-
-
 <script>
     const socket = io("http://localhost:8080", {
         transports: ["websocket"]  //to avoid cors
@@ -44,6 +41,8 @@
     const url = new URL(currentUrl);
     const searchParams = new URLSearchParams(url.search);
     const ROOM_ID = searchParams.get('roomId');
+
+
 
 
     const videoGrid = document.getElementById('video-grid')
@@ -72,9 +71,9 @@
             console.log("here3")
             call.answer(stream)
             const video = document.createElement("video")
-           
-                addVideoStream(video, stream)
-         
+
+            addVideoStream(video, stream)
+
         })
 
         socket.on("user-connected", userId => {

@@ -1,0 +1,162 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+
+.navbar h1 {
+    margin: 0;
+}
+
+.navbar .logout-btn {
+    padding: 5px 10px;
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.doctor-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.doctor-card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.doctor-image {
+    width: 170px
+}
+
+.doctor-card .doctor-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.doctor-card .doctor-email {
+    margin-bottom: 5px;
+}
+
+.doctor-card .doctor-specialization {
+    margin-bottom: 10px;
+}
+
+.doctor-card .book-btn {
+    padding: 5px 10px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size:20px;
+    margin-top:3px;
+}
+
+.doctors-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-close {
+    cursor: pointer;
+}
+
+.time-interval {
+    margin-bottom: 10px;
+}
+
+
+.appointment-info div {
+    display: flex;
+    justify-content: space-around;
+}
+
+.edit-appointment-btn,
+.cancel-appointment-btn {
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+    height: 50px;
+    margin-top: 40px;
+    font-size:20px
+}
+
+.cancel-appointment-btn {
+    background-color: #f44336;
+}
+
+.appointment-info p {
+    font-size: 20px;
+    margin-top: 60px
+}
+
+button {
+    cursor: pointer;
+    font-size:20px;
+
+}
+
+.navbar div {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navbar h2 {
+    margin-right: 10px
+}
+
+.video-btn {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.video-btn:hover {
+    background-color: #45a049;
+}

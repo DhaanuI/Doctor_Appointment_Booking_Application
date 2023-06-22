@@ -9,6 +9,7 @@ const { v4: uuidV4 } = require("uuid")
 
 app.use(cors())
 
+const { sendEmail } = require("./nodemailer/sendingEmail")
 
 // importing necessary things from other files
 const { connection } = require("./config/db");
@@ -20,6 +21,21 @@ const { appointmentRoute } = require("./route/appointmentRoute");
 // home route
 app.get("/", async (req, res) => {
     res.status(200).send("Welcome to Hospital Management Backend");
+})
+
+app.post("/email", async (req, res) => {
+    const { email, url } = req.body
+    try {
+        sendEmail({
+            email: email, subject: `Video Call link`, body: url
+        });
+
+        res.send({ "message": "EMAIL sent" })
+    }
+    catch (err) {
+        res.send({ "message": "error" })
+    }
+
 })
 
 // redirect routes

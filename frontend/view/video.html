@@ -32,8 +32,18 @@
                 throw new Error('Request failed');
             }
 
-            const res = await response.json();
-            window.location.href = `http://127.0.0.1:5500/frontend/view/room.html?roomId=${res.roomId}`;
+            else {
+                const res = await response.json();
+
+                let resp = await fetch("http://localhost:8080/email", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ "email": localStorage.getItem("email"), "url": `http://127.0.0.1:5500/frontend/view/room.html?roomId=${res.roomId}` })
+                })
+                window.location.href = `http://127.0.0.1:5500/frontend/view/room.html?roomId=${res.roomId}`;
+            }
 
         } catch (error) {
             console.error(error);

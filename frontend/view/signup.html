@@ -87,12 +87,28 @@
         .role-buttons button:hover {
             background-color: #0056b3;
         }
+
+        #signin{
+            font-size: 16px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
     </style>
 
 <body>
     <h1>Welcome to Doctor's Appointment Booking Application</h1>
 
+    <button id="signin">Click to SIGNIN if you already have an account</button>
+
+
+
     <div class="role-buttons">
+        <h1>Are you </h1>
         <button onclick="showDoctorForm()">Doctor</button>
         <button onclick="showPatientForm()">Patient</button>
     </div>

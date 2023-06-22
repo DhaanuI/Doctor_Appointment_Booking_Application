@@ -3,6 +3,9 @@ const url = "https://pococare-assignment.vercel.app/"
 const backendURL = "https://pococare1.onrender.com/"
 
 
+document.querySelector("#signup").addEventListener("click", () => {
+    window.location.href = `${url}view/signup.html`
+})
 
 const patientForm = document.querySelector(".patient");
 

@@ -3,6 +3,11 @@ const url = "https://pococare-assignment.vercel.app/"
 const backendURL = "https://pococare1.onrender.com/"
 
 
+document.querySelector("#signin").addEventListener("click", () => {
+    window.location.href = `${url}view/signin.html`
+})
+
+
 function showDoctorForm() {
     document.getElementById('doctorForm').style.display = 'block';
     document.getElementById('patientForm').style.display = 'none';

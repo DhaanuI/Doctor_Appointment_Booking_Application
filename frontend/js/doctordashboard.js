@@ -4,7 +4,7 @@ const backendURL = "https://pococare1.onrender.com/"
 
 if (!localStorage.getItem("token")) {
     alert("Please login")
-    window.location.href = `${url}frontend/view/signin.html`;
+    window.location.href = `${url}view/signin.html`;
 }
 
 document.querySelector(".doctor-name").innerHTML = localStorage.getItem('name')
@@ -114,7 +114,7 @@ logoutButton.addEventListener('click', () => {
     })
         .then(response => {
             if (response.ok) {
-                window.location.href = `${url}frontend/view/signin.html`;
+                window.location.href = `${url}view/signin.html`;
             } else {
                 console.log('Logout request failed.');
             }

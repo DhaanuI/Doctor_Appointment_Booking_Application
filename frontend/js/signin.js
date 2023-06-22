@@ -38,7 +38,7 @@ patientForm.addEventListener("submit", async (e) => {
         enteredEmail == ""
         enteredPass == ""
 
-        window.location.href = `${url}frontend/view/patientdashboard.html`
+        window.location.href = `${url}view/patientdashboard.html`
     }
     else {
         alert(res.message)
@@ -80,7 +80,7 @@ doctorForm.addEventListener("submit", async (e) => {
         enteredEmail == ""
         enteredPass == ""
 
-        window.location.href = `${url}frontend/view/doctordashboard.html`
+        window.location.href = `${url}view/doctordashboard.html`
     }
     else {
         alert(res.message)

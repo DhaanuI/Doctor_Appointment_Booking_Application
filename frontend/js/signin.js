@@ -28,7 +28,7 @@ patientForm.addEventListener("submit", async (e) => {
     })
 
     let res = await verifyingLogin.json()
-
+    console.log(res)
     if (res.token) {
         let token = res.token;
         localStorage.setItem("token", token)

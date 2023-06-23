@@ -11,13 +11,16 @@ const ROOM_ID = searchParams.get('roomId');
 
 
 const videoGrid = document.getElementById('video-grid')
-const myPeer = new Peer(undefined, {
-    host: 'https://pococare1.onrender.com/',
-    port: '8081'
-})
+// const myPeer = new Peer(undefined, {
+//     host: 'https://pococare1.onrender.com/',
+//     port: '8081'
+// })
+
+const myPeer = new Peer();
 
 const myVideo = document.createElement('video')
 myVideo.muted = true
+
 const peers = {}
 navigator.mediaDevices.getUserMedia({
     video: true,
@@ -36,7 +39,9 @@ navigator.mediaDevices.getUserMedia({
     socket.on('user-connected', userId => {
         connectToNewUser(userId, stream)
     })
-})
+}).catch((err) => {
+    console.log(err);
+});
 
 socket.on('user-disconnected', userId => {
     if (peers[userId]) peers[userId].close()

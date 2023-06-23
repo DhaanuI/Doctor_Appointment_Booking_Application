@@ -18,7 +18,7 @@ doctorRoute.post("/register", async (req, res) => {
     const { name, email, password, role, specialization, image } = req.body
     const doctorFound = await DoctorModel.findOne({ email })
     if (doctorFound) {
-        res.status(409)({ "message": "Already doctor registered" })
+        res.status(409).send({ "message": "Already doctor registered" })
     }
     else {
         try {

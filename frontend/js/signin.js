@@ -4,7 +4,7 @@ const backendURL = "https://pococare1.onrender.com/"
 
 
 document.querySelector("#signup").addEventListener("click", () => {
-    window.location.href = `${url}view/signup.html`
+    window.location.href = `./signup.html`
 })
 
 const patientForm = document.querySelector(".patient");
@@ -42,7 +42,7 @@ patientForm.addEventListener("submit", async (e) => {
         enteredEmail == ""
         enteredPass == ""
 
-        window.location.href = `${url}view/patientdashboard.html`
+        window.location.href = `./patientdashboard.html`
     }
     else {
         res.message ? alert("Invalid Credentials") : alert("Invalid Credentials")
@@ -85,7 +85,7 @@ doctorForm.addEventListener("submit", async (e) => {
         enteredEmail == ""
         enteredPass == ""
 
-        window.location.href = `${url}view/doctordashboard.html`
+        window.location.href = `./doctordashboard.html`
     }
     else {
         res.message ? alert("Invalid Credentials") : alert("Invalid Credentials")

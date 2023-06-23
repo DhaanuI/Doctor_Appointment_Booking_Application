@@ -9,6 +9,7 @@
         body {
             text-align: center;
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
         }
 
         h1 {
@@ -29,6 +30,8 @@
 
         button:hover {
             background-color: #9ab7d6;
+            color: black;
+            font-weight: bolder;
         }
 
         div {
@@ -62,6 +65,8 @@
     const login = document.getElementById("login")
 
     login.addEventListener("click", () => {
-        window.location.href = `${url}view/signin.html`
+        window.location.href = "view/signin.html"
     })
+
+    // `${url}view/signin.html`
 </script>

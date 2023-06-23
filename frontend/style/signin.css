@@ -49,6 +49,10 @@ h1 {
     cursor: pointer;
 }
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 .form button:hover {
     background-color: #0056b3;
 }

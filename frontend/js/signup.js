@@ -4,7 +4,7 @@ const backendURL = "https://pococare1.onrender.com/"
 
 
 document.querySelector("#signin").addEventListener("click", () => {
-    window.location.href = `${url}view/signin.html`
+    window.location.href = `./signin.html`
 })
 
 
@@ -49,7 +49,7 @@ patientForm.addEventListener('submit', (e) => {
         .then(data => {
             console.log(data);
             alert(data.message)
-            window.location.href = `${url}view/signin.html`
+            window.location.href = `view/signin.html`
         })
         .catch(error => {
             console.error(error);
@@ -87,7 +87,7 @@ doctorForm.addEventListener('submit', (e) => {
         .then(data => {
             console.log(data)
             alert(data.message)
-            window.location.href = `${url}view/signin.html`
+            window.location.href = `view/signin.html`
         })
         .catch(error => {
             console.error(error);

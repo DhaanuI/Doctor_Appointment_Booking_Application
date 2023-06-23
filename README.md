@@ -2,7 +2,7 @@
 
 A Doctor's Appointment Booking System -lets you register and Login and be able to view Doctors, book appointments, view/reschedule and also delete appointments.
 
-<-- scroll down last to see a few Doctors/Patients Dummy data -->
+## <-- scroll down last to see a few Doctors/Patients Dummy data -->
 
 Features Implemented:
 * Authentication - JWT-based token
@@ -123,7 +123,8 @@ email : user3@gmail.com  password : user3
 
 
 ## Login as a Doctor -
-email : doc1@gmail.com  password : doc1
+email : doc1@gmail.com  password : doc1   --> has few appointments already
+
 email : pococare@gmail.com  password : pococare
 
 ## You can use the above emails credentials to verify CRUD operations

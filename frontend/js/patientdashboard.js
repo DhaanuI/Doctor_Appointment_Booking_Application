@@ -8,7 +8,7 @@ if (!localStorage.getItem("token")) {
     window.location.href = `./signin.html}`
 }
 
-document.querySelector(".patient-name").innerHTML = "Hi "+localStorage.getItem('name')
+document.querySelector(".patient-name").innerHTML = "Hi " + localStorage.getItem('name')
 
 const id = localStorage.getItem('id')
 async function fetchAppointments(id) {
@@ -71,7 +71,7 @@ function renderAppointments(appointments) {
             cancelAppointmentBtn.addEventListener('click', () => {
                 const confirmDelete = confirm('Are you sure you want to delete this appointment?');
                 if (confirmDelete) {
-                    const appointmentId = appointment._id; 
+                    const appointmentId = appointment._id;
                     const token = localStorage.getItem('token');
 
                     fetch(`${backendURL}appointments/delete/${appointmentId}`, {
@@ -150,7 +150,7 @@ function renderDoctors(doctors) {
 
         videoCall.addEventListener('click', function () {
             localStorage.setItem("email", doctor.email)
-            window.location.href = `${url}view/video.html`
+            window.location.href = `./video.html`
         });
 
         const bookButton = document.createElement('button');

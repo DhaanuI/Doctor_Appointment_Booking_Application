@@ -6,10 +6,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VIDEO</title>
 
+    <style>
+        body {
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #videobutton {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        #videobutton:hover {
+            background-color: #45a049;
+        }
+    </style>
+
 </head>
 
 <body>
-    <button id="videobutton">start</button>
+    <button id="videobutton">START VIDEO</button>
 </body>
 
 </html>
@@ -48,7 +74,7 @@
                 })
 
                 alert("Doctor will receive an email with the Meeting Link")
-                window.location.href = `${url}view/room.html?roomId=${res.roomId}`;
+                window.location.href = `./room.html?roomId=${res.roomId}`;
             }
 
         } catch (error) {

@@ -49,7 +49,7 @@ patientForm.addEventListener('submit', (e) => {
         .then(data => {
             console.log(data);
             alert(data.message)
-            window.location.href = `view/signin.html`
+            window.location.href = `./signin.html`
         })
         .catch(error => {
             console.error(error);
@@ -87,7 +87,7 @@ doctorForm.addEventListener('submit', (e) => {
         .then(data => {
             console.log(data)
             alert(data.message)
-            window.location.href = `view/signin.html`
+            window.location.href = `./signin.html`
         })
         .catch(error => {
             console.error(error);

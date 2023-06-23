@@ -2,6 +2,9 @@
 
 A Doctor's Appointment Booking System -lets you register and Login and be able to view Doctors, book appointments, view/reschedule and also delete appointments.
 
+
+PS: As backend deployed using Render, there is more than an expected delay, apologies for the inconveniene!
+
 ## <-- scroll down last to see a few Doctors/Patients Dummy data -->
 
 Features Implemented:

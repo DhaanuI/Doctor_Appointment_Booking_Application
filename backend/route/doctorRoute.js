@@ -27,7 +27,7 @@ doctorRoute.post("/register", async (req, res) => {
             bcrypt.hash(password, 5, async function (err, hash) {
                 const data = new DoctorModel({ name, email, password: hash, image, registeredDate: dateFormat, role, specialization })
                 await data.save()
-                res.status(201).send({ "message": "doctor registered" })
+                res.status(201).send({ "message": "Doctor Registered" })
             });
         }
         catch (err) {

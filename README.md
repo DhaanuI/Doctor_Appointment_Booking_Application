@@ -124,6 +124,7 @@ email : user3@gmail.com  password : user3
 
 ## Login as a Doctor -
 email : doc1@gmail.com  password : doc1
+email : pococare@gmail.com  password : pococare
 
 ## You can use the above emails credentials to verify CRUD operations
 

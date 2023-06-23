@@ -1,6 +1,16 @@
 # Pococare_assignment
 
-A Doctor's Appointment Booking System -lets you register and Login and be able to view Doctors, book appointment, view/reschedule and also delete appointments.
+A Doctor's Appointment Booking System -lets you register and Login and be able to view Doctors, book appointments, view/reschedule and also delete appointments.
+
+Features Implemented:
+* Authentication - JWT-based token
+* Logout using blacklist
+* Register/Login
+* Book Appointment POST
+* Edit Appointment PATCH
+* Delete Appointment DELETE
+* Nodemailer feature to let other user know the video call link**
+  
 
 ## Tech Stacks used:
 [![My Skills](https://skillicons.dev/icons?i=js,nodejs,express,mongodb,html,css)](https://skillicons.dev)

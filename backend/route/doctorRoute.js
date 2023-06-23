@@ -31,7 +31,7 @@ doctorRoute.post("/register", async (req, res) => {
             });
         }
         catch (err) {
-            res.status(500)({ "ERROR": err })
+            res.status(500).send({ "ERROR": err })
         }
     }
 })

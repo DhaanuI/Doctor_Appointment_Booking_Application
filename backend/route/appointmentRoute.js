@@ -55,8 +55,6 @@ appointmentRoute.post("/add", async (req, res) => {
             ]
         });
 
-        console.log(isSlotBooked)
-
         if (isSlotBooked) {
             return res.status(409).send({ error: 'Time slot not available. Please choose a different time.' });
         }
@@ -94,7 +92,6 @@ appointmentRoute.patch("/update/:id", async (req, res) => {
 
 appointmentRoute.delete("/delete/:id", async (req, res) => {
     const ID = req.params.id;
-
     try {
         await AppointmentModel.findByIdAndDelete({ _id: ID })
         res.send({ "message": "Particular Appointment has been deleted" })

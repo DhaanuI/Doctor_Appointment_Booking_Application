@@ -106,7 +106,6 @@ async function fetchDoctors() {
     try {
         const response = await fetch(`${backendURL}doctors/all`);
         const data = await response.json();
-        console.log(data)
         renderDoctors(data.Doctors);
 
     } catch (error) {

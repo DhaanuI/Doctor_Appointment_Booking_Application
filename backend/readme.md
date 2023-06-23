@@ -1,4 +1,4 @@
-Planning and Implementation:
+<!-- Planning and Implementation:
 
 Create Patient route, Doctor route, and related doctor and patient models 
 
@@ -25,4 +25,4 @@ here2
 
 here3
 here7
-here8
+here8 -->

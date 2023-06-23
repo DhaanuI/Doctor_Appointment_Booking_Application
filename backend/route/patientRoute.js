@@ -8,7 +8,6 @@ const fs = require("fs")
 
 require("dotenv").config();
 
-const { client } = require("../config/db")
 const { PatientModel } = require("../model/PatientModel");
 
 const { authorise } = require("../authorize")

@@ -56,19 +56,19 @@
 
     const peers = {}
 
-    console.log("here1")    // WORKING
+
 
     navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true
     }).then(stream => {
-        console.log("here2")
+ 
         addVideoStream(myVideo, stream)
 
         console.log(myPeer)
 
         myPeer.on("call", call => {
-            console.log("here3")
+
             call.answer(stream)
             const video = document.createElement("video")
 
@@ -77,14 +77,14 @@
         })
 
         socket.on("user-connected", userId => {
-            console.log("new user")
+  
             connectToNewUser(userId, stream)
         })
     })
 
 
     function connectToNewUser(userId, stream) {
-        console.log("here5")
+ 
         const call = myPeer.call(userId, stream)
         const video = document.createElement("video")
         // call.on("stream", userVideoStream => {
@@ -98,12 +98,12 @@
     }
 
     myPeer.on('open', id => {
-        console.log("OPEN")
+
         socket.emit('join-room', ROOM_ID, id)
     })
 
     function addVideoStream(video, stream) {
-        console.log("here7")
+
         video.srcObject = stream
         video.addEventListener('loadedmetadata', () => {
             video.play()

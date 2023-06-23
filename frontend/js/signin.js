@@ -10,6 +10,7 @@ document.querySelector("#signup").addEventListener("click", () => {
 const patientForm = document.querySelector(".patient");
 
 patientForm.addEventListener("submit", async (e) => {
+    alert("Validating, a moment please")
     e.preventDefault();
     let enteredEmail = document.getElementById("patientEmail").value
     let enteredPass = document.getElementById("patientPassword").value
@@ -31,7 +32,7 @@ patientForm.addEventListener("submit", async (e) => {
     })
 
     let res = await verifyingLogin.json()
-    console.log(res)
+   
     if (res.token) {
         let token = res.token;
         localStorage.setItem("token", token)
@@ -52,6 +53,7 @@ patientForm.addEventListener("submit", async (e) => {
 const doctorForm = document.querySelector(".doctor");
 
 doctorForm.addEventListener("submit", async (e) => {
+    alert("Validating, a moment please")
     e.preventDefault();
     let enteredEmail = document.getElementById("doctorEmail").value
     let enteredPass = document.getElementById("doctorPassword").value

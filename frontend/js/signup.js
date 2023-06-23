@@ -22,6 +22,7 @@ function showPatientForm() {
 const patientForm = document.getElementById('patientForm');
 
 patientForm.addEventListener('submit', (e) => {
+    alert("Validating, a moment please")
     e.preventDefault();
 
     const patientName = document.getElementById('patientName').value;
@@ -58,6 +59,7 @@ patientForm.addEventListener('submit', (e) => {
 const doctorForm = document.getElementById('doctorForm');
 
 doctorForm.addEventListener('submit', (e) => {
+    alert("Validating, a moment please")
     e.preventDefault();
 
     const doctorName = document.getElementById('doctorName').value;
@@ -83,7 +85,7 @@ doctorForm.addEventListener('submit', (e) => {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            document.querySelector(".preload").style.display = "none"//
             alert("Registeration Successfull")
             window.location.href = `${url}view/signin.html`
         })
@@ -91,3 +93,4 @@ doctorForm.addEventListener('submit', (e) => {
             console.error(error);
         });
 });
+

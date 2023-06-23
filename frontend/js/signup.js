@@ -85,7 +85,6 @@ doctorForm.addEventListener('submit', (e) => {
     })
         .then(response => response.json())
         .then(data => {
-            document.querySelector(".preload").style.display = "none"//
             alert("Registeration Successfull")
             window.location.href = `${url}view/signin.html`
         })

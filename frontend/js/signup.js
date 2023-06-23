@@ -2,11 +2,12 @@ const url = "https://pococare-assignment.vercel.app/"
 
 const backendURL = "https://pococare1.onrender.com/"
 
+const spinner = document.getElementById("spinner");
+
 
 document.querySelector("#signin").addEventListener("click", () => {
     window.location.href = `./signin.html`
 })
-
 
 function showDoctorForm() {
     document.getElementById('doctorForm').style.display = 'block';
@@ -22,7 +23,7 @@ function showPatientForm() {
 const patientForm = document.getElementById('patientForm');
 
 patientForm.addEventListener('submit', (e) => {
-    alert("Validating, a moment please")
+    spinner.removeAttribute('hidden');
     e.preventDefault();
 
     const patientName = document.getElementById('patientName').value;
@@ -47,6 +48,7 @@ patientForm.addEventListener('submit', (e) => {
     })
         .then(response => response.json())
         .then(data => {
+            spinner.setAttribute('hidden', '');
             console.log(data);
             alert(data.message)
             window.location.href = `./signin.html`
@@ -59,7 +61,7 @@ patientForm.addEventListener('submit', (e) => {
 const doctorForm = document.getElementById('doctorForm');
 
 doctorForm.addEventListener('submit', (e) => {
-    alert("Validating, a moment please")
+    spinner.removeAttribute('hidden');
     e.preventDefault();
 
     const doctorName = document.getElementById('doctorName').value;
@@ -85,6 +87,7 @@ doctorForm.addEventListener('submit', (e) => {
     })
         .then(response => response.json())
         .then(data => {
+            spinner.setAttribute('hidden', '');
             console.log(data)
             alert(data.message)
             window.location.href = `./signin.html`

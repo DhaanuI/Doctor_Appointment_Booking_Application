@@ -5,7 +5,7 @@ const backendURL = "https://pococare1.onrender.com/"
 
 if (!localStorage.getItem("token")) {
     alert("Please login")
-    window.location.href = `./signin.html}`
+    window.location.href = `./signin.html`
 }
 
 document.querySelector(".patient-name").innerHTML = "Hi " + localStorage.getItem('name')

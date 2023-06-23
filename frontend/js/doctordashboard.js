@@ -4,10 +4,10 @@ const backendURL = "https://pococare1.onrender.com/"
 
 if (!localStorage.getItem("token")) {
     alert("Please login")
-    window.location.href = `view/signin.html`;
+    window.location.href = `./signin.html`;
 }
 
-document.querySelector(".doctor-name").innerHTML = "Hi "+localStorage.getItem('name')
+document.querySelector(".doctor-name").innerHTML = "Hi " + localStorage.getItem('name')
 
 const id = localStorage.getItem('id')
 async function fetchAppointments(id) {

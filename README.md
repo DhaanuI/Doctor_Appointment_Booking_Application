@@ -119,7 +119,7 @@ email : user1@gmail.com  password : user1
 
 email : user2@gmail.com  password : user1
 
-email : user3@gmail.com  password : user3
+email : patient11@gmail.com password: patient11
 
 
 ## Login as a Doctor -

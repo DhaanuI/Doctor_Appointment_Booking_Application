@@ -48,7 +48,7 @@ patientForm.addEventListener('submit', (e) => {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            alert("Registeration Successfull")
+            alert(data.message)
             window.location.href = `${url}view/signin.html`
         })
         .catch(error => {
@@ -85,7 +85,8 @@ doctorForm.addEventListener('submit', (e) => {
     })
         .then(response => response.json())
         .then(data => {
-            alert("Registeration Successfull")
+            console.log(data)
+            alert(data.message)
             window.location.href = `${url}view/signin.html`
         })
         .catch(error => {

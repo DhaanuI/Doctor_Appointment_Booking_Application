@@ -2,6 +2,8 @@
 
 A Doctor's Appointment Booking System -lets you register and Login and be able to view Doctors, book appointments, view/reschedule and also delete appointments.
 
+<-- scroll down last to see a few Doctors/Patients Dummy data -->
+
 Features Implemented:
 * Authentication - JWT-based token
 * Logout using blacklist
@@ -109,6 +111,21 @@ api - https://pococare1.onrender.com/
 
 
 
+
+# Use these credentials to check out features:
+
+## Login as a Patient -
+email : user1@gmail.com  password : user1
+
+email : user2@gmail.com  password : user1
+
+email : user3@gmail.com  password : user3
+
+
+## Login as a Doctor -
+email : doc1@gmail.com  password : doc1
+
+## You can use the above emails credentials to verify CRUD operations
 
 
 

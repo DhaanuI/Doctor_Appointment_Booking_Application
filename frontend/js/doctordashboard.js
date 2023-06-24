@@ -18,10 +18,10 @@ async function fetchYourdata(id) {
     try {
         const token = localStorage.getItem('token');
 
-        const response = await fetch(`${backendURL}doctors/${id}`);
+        const response = await fetch(`${backendURL}doctors/getdoctor/${id}`);
         const data = await response.json()
 
-        document.querySelector(".videoCall").textContent = data.videoCall
+        document.querySelector(".videoCall").textContent = data.Doctor.videoCall
 
     } catch (error) {
         console.error('Error fetching appointments:', error);

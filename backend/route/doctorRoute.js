@@ -90,21 +90,21 @@ doctorRoute.delete("/delete/:id", async (req, res) => {
     }
 })
 
-// doctorRoute.get("/getdoctor/:id", async (req, res) => {
-//     const id = req.params.id
-//     try {
-//         let data = await DoctorModel.findOne({ _id: id })
-//         res.status(200).send({ "Doctor": data })
-//     }
-//     catch (err) {
-//         res.status(500).send({ "ERROR": err })
-//     }
-// })
-
 doctorRoute.get("/all", async (req, res) => {
     try {
         let data = await DoctorModel.find()
         res.status(200).send({ "Doctors": data })
+    }
+    catch (err) {
+        res.status(500).send({ "ERROR": err })
+    }
+})
+
+doctorRoute.get("/getdoctor/:id", async (req, res) => {
+    const id = req.params.id
+    try {
+        let data = await DoctorModel.findOne({ _id: id })
+        res.status(200).send({ "Doctor": data })
     }
     catch (err) {
         res.status(500).send({ "ERROR": err })

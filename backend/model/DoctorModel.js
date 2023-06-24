@@ -7,7 +7,8 @@ const doctorSchema = mongoose.Schema({
     registeredDate: { type: String },            // note down the date registered
     specialization: { type: String, enum: ["general", "heart", "kidney"], default: "general" },
     role: { type: String, default: "doctor" },
-    image: String
+    image: String,
+    videoCall: { type: String, enum: ["YES", "NO"], default: "NO" },
 })
 
 const DoctorModel = mongoose.model("doctor", doctorSchema)

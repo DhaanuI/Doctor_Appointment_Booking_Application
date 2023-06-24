@@ -68,6 +68,7 @@ doctorForm.addEventListener('submit', (e) => {
     const doctorEmail = document.getElementById('doctorEmail').value;
     const doctorPassword = document.getElementById('doctorPassword').value;
     const doctorSpecialisation = document.getElementById('doctorSpecialisation').value;
+    const doctorVideocall = document.getElementById('doctorVideocall').value;
     const doctorImage = document.getElementById('doctorImage').value;
 
     const doctorData = {
@@ -75,6 +76,7 @@ doctorForm.addEventListener('submit', (e) => {
         email: doctorEmail,
         password: doctorPassword,
         specialisation: doctorSpecialisation,
+        videoCall:doctorVideocall,
         image: doctorImage
     };
 

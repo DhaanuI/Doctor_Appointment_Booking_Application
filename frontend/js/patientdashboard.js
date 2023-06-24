@@ -142,16 +142,23 @@ function renderDoctors(doctors) {
         doctorSpecialization.className = 'doctor-specialization';
         doctorSpecialization.textContent = "Specialization: " + doctor.specialization;
         doctorCard.appendChild(doctorSpecialization);
+        if (doctor.videoCall == "YES") {
+            const videoCall = document.createElement('button');
+            videoCall.className = 'video-btn';
+            videoCall.textContent = 'Available for a Video Consultation NOW';
+            doctorCard.appendChild(videoCall);
 
-        const videoCall = document.createElement('button');
-        videoCall.className = 'video-btn';
-        videoCall.textContent = 'Available for a Video Consultation NOW';
-        doctorCard.appendChild(videoCall);
-
-        videoCall.addEventListener('click', function () {
-            localStorage.setItem("email", doctor.email)
-            window.location.href = `./video.html`
-        });
+            videoCall.addEventListener('click', function () {
+                localStorage.setItem("email", doctor.email)
+                window.location.href = `./video.html`
+            });
+        }
+        else {
+            const videoCallNotavailable = document.createElement('button');
+            videoCallNotavailable.className = 'video-btn-notavailable';
+            videoCallNotavailable.textContent = 'Video Call Not Available';
+            doctorCard.appendChild(videoCallNotavailable);
+        }
 
         const bookButton = document.createElement('button');
         bookButton.className = 'book-btn';

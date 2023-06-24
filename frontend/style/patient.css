@@ -107,16 +107,16 @@ p {
     margin-bottom: 10px;
     font-size: 19px;
     color: #0f0909;
-  }
-  
-  #my-date-picker {
+}
+
+#my-date-picker {
     padding: 8px;
     font-size: 20px;
     border-radius: 4px;
     border: 1px solid #ccc;
-  }
+}
 
-  
+
 
 
 
@@ -128,11 +128,12 @@ p {
     margin-top: 20px;
 }
 
-.edit-appointment-btn{
-    margin-right:-40px
+.edit-appointment-btn {
+    margin-right: -40px
 }
-.cancel-appointment-btn{
-    margin-left:-40px
+
+.cancel-appointment-btn {
+    margin-left: -40px
 }
 
 .edit-appointment-btn,
@@ -193,6 +194,15 @@ button {
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
+}
+
+.video-btn-notavailable {
+    background-color: #f03919;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
 }
 
 .video-btn:hover {

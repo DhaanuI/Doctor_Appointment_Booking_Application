@@ -15,7 +15,7 @@ const { authenticate } = require("../middleware/authentication.middleware")
 
 // to register doctor and then hashing password using Bcrypt
 doctorRoute.post("/register", async (req, res) => {
-    const { name, email, password, role, specialization, image } = req.body
+    const { name, email, password, role, specialization, image, videoCall } = req.body
     const doctorFound = await DoctorModel.findOne({ email })
     if (doctorFound) {
         res.status(409).send({ "message": "Already doctor registered" })
@@ -25,7 +25,7 @@ doctorRoute.post("/register", async (req, res) => {
             let dateFormat = moment().format('D-MM-YYYY');
 
             bcrypt.hash(password, 5, async function (err, hash) {
-                const data = new DoctorModel({ name, email, password: hash, image, registeredDate: dateFormat, role, specialization })
+                const data = new DoctorModel({ name, email, password: hash, image, registeredDate: dateFormat, role, specialization, videoCall })
                 await data.save()
                 res.status(201).send({ "message": "Doctor Registered" })
             });

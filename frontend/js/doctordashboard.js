@@ -13,18 +13,18 @@ document.querySelector(".doctor-name").innerHTML = "Hi " + localStorage.getItem(
 
 const id = localStorage.getItem('id')
 
-fetchYourdata()
+fetchYourdata(id)
 async function fetchYourdata(id) {
     try {
         const token = localStorage.getItem('token');
 
         const response = await fetch(`${backendURL}doctors/getdoctor/${id}`);
         const data = await response.json()
-
+        console.log(data)
         document.querySelector("#videoCall").textContent = data.Doctor.videoCall
 
     } catch (error) {
-        console.error('Error fetching appointments:', error);
+        console.error('Error loading videoCall options:', error);
         throw error;
     }
 }

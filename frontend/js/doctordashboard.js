@@ -7,9 +7,29 @@ if (!localStorage.getItem("token")) {
     window.location.href = `./signin.html`;
 }
 
+
+
 document.querySelector(".doctor-name").innerHTML = "Hi " + localStorage.getItem('name')
 
 const id = localStorage.getItem('id')
+
+fetchYourdata()
+async function fetchYourdata(id) {
+    try {
+        const token = localStorage.getItem('token');
+
+        const response = await fetch(`${backendURL}doctors/${id}`);
+        const data = await response.json()
+
+        document.querySelector(".videoCall").textContent = data.videoCall
+
+    } catch (error) {
+        console.error('Error fetching appointments:', error);
+        throw error;
+    }
+}
+
+
 async function fetchAppointments(id) {
     try {
         const token = localStorage.getItem('token');
@@ -18,7 +38,7 @@ async function fetchAppointments(id) {
             method: "GET",
             headers: {
                 Authorization: token,
-            },
+            }
         });
         const data = await response.json()
 
@@ -95,6 +115,42 @@ function renderAppointments(appointments) {
     }
 }
 
+
+const changeVideocallButton = document.querySelector('.changeVideocall');
+
+changeVideocallButton.addEventListener('click', () => {
+
+    const id = localStorage.getItem('id')
+    let obj = {}
+    if (document.querySelector(".videoCall").textContent == "YES") {
+        obj = {
+            videoCall: "NO"
+        }
+    }
+    else {
+        obj = {
+            videoCall: "YES"
+        }
+    }
+    fetch(`${backendURL}doctors/update/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': token
+        },
+        body: JSON.stringify(obj)
+    })
+        .then(response => {
+            if (response.ok) {
+                alert("Successfull")
+            } else {
+                alert("Error")
+            }
+        })
+        .catch(error => {
+            console.log('An error', error);
+        });
+});
 
 const logoutButton = document.querySelector('.logout-btn');
 

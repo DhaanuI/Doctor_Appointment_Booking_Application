@@ -21,7 +21,7 @@ async function fetchYourdata(id) {
         const response = await fetch(`${backendURL}doctors/getdoctor/${id}`);
         const data = await response.json()
 
-        document.querySelector(".videoCall").textContent = data.Doctor.videoCall
+        document.querySelector("#videoCall").textContent = data.Doctor.videoCall
 
     } catch (error) {
         console.error('Error fetching appointments:', error);
@@ -116,13 +116,13 @@ function renderAppointments(appointments) {
 }
 
 
-const changeVideocallButton = document.querySelector('.changeVideocall');
+const changeVideocallButton = document.querySelector('#changeVideocall');
 
 changeVideocallButton.addEventListener('click', () => {
 
     const id = localStorage.getItem('id')
     let obj = {}
-    if (document.querySelector(".videoCall").textContent == "YES") {
+    if (document.querySelector("#videoCall").textContent == "YES") {
         obj = {
             videoCall: "NO"
         }

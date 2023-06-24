@@ -11,13 +11,14 @@
 
 ### Features Implemented:
 * Authentication - JWT-based token
-* Register/Login
+* Register/Login - Doctors and Patients
 * Logout using blacklist
-* Book Appointment POST
-* Edit Appointment PATCH
-* Delete Appointment DELETE
-* Start Video call instantly with the Doctors available
-* Nodemailer feature to let other user know the video call link via email
+* Patient - Book Appointment POST
+* Patient - Edit Appointment PATCH
+* Patient & Doctors - Delete Appointment DELETE
+* Patients - Start Video call instantly with the Doctors available
+* Doctors can toggle between Video call availability
+* Nodemailer feature to let Doctor know the video call link via email
 
 
 ## Tech Stacks used:

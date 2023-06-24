@@ -53,6 +53,8 @@
 
     <div id="video-grid"></div>
 
+    <button id="toggle-video-button">Start/Stop Video</button>
+
     <div id="endButtonDiv">
         <button onclick="redirectToDashboard()">END VIDEO - Go back to DASHBOARD</button>
     </div>
@@ -98,6 +100,26 @@
         socket.on('user-connected', userId => {
             connectToNewUser(userId, stream)
         })
+
+        // Toggle video button functionality
+        const toggleVideoButton = document.getElementById('toggle-video-button');
+        toggleVideoButton.addEventListener('click', toggleVideoStream);
+
+        function toggleVideoStream() {
+            const videoTrack = stream.getVideoTracks()[0]; // Get the video track from the stream
+
+            if (videoTrack.enabled) {
+                // Video is currently enabled, so disable it
+                videoTrack.enabled = false;
+                myVideo.srcObject.getVideoTracks()[0].enabled = false; // Disable local video
+                toggleVideoButton.textContent = 'Start Video';
+            } else {
+                // Video is currently disabled, so enable it
+                videoTrack.enabled = true;
+                myVideo.srcObject.getVideoTracks()[0].enabled = true; // Enable local video
+                toggleVideoButton.textContent = 'Stop Video';
+            }
+        }
     }).catch((err) => {
         console.log(err);
     });

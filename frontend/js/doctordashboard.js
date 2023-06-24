@@ -135,14 +135,16 @@ changeVideocallButton.addEventListener('click', () => {
     fetch(`${backendURL}doctors/update/${id}`, {
         method: 'PATCH',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': token
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(obj)
     })
         .then(response => {
             if (response.ok) {
                 alert("Successfull")
+                const id = localStorage.getItem('id')
+
+                fetchYourdata(id)
             } else {
                 alert("Error")
             }

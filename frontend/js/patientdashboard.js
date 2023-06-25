@@ -71,6 +71,7 @@ function renderAppointments(appointments) {
             cancelAppointmentBtn.addEventListener('click', () => {
                 const confirmDelete = confirm('Are you sure you want to delete this appointment?');
                 if (confirmDelete) {
+                    alert("Request is received, Allow a moment to process")
                     const appointmentId = appointment._id;
                     const token = localStorage.getItem('token');
 
@@ -84,7 +85,7 @@ function renderAppointments(appointments) {
                             if (response.ok) {
                                 console.log('Appointment deleted');
                                 alert('Appointment deleted')
-                                fetchAppointments()
+                                fetchAppointments(id)
                             } else {
                                 console.error('Failed to delete appointment');
                             }
@@ -242,6 +243,7 @@ function openModal(doctorId, string) {
 
     const confirmBtn = document.getElementById('book-appointment-btn');
     confirmBtn.addEventListener('click', function () {
+
         const selectedTime = document.querySelector('input[name="time"]:checked').value;
         const selectedDate = document.getElementById('my-date-picker').value;
         const patientId = localStorage.getItem('id');
@@ -298,6 +300,8 @@ function openModal(doctorId, string) {
 
         const token = localStorage.getItem("token")
         if (string == "post") {
+            spinner.removeAttribute('hidden');
+            alert("Request is received, Allow a moment to process")
             fetch(`${backendURL}appointments/add`, {
                 method: 'POST',
                 headers: {
@@ -308,6 +312,7 @@ function openModal(doctorId, string) {
             })
                 .then(response => response.json())
                 .then(result => {
+                    spinner.setAttribute('hidden', '');
                     console.log('Appointment added successfully:', result);
                     alert("Appointment added successfully")
                     closeModal();
@@ -319,6 +324,8 @@ function openModal(doctorId, string) {
                 });
         }
         else if (string == "patch") {
+            spinner.removeAttribute('hidden');
+            alert("Request is received, Allow a moment to process")
             const data = {
                 date: selectedDate,
                 startTime: start,
@@ -334,6 +341,7 @@ function openModal(doctorId, string) {
             })
                 .then(response => response.json())
                 .then(result => {
+                    spinner.setAttribute('hidden', '');
                     console.log('Appointment modified successfully:', result);
                     alert("Appointment modified successfully")
                     closeModal();

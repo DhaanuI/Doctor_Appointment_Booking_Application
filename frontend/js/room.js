@@ -11,10 +11,6 @@ const ROOM_ID = searchParams.get('roomId');
 
 
 const videoGrid = document.getElementById('video-grid')
-// const myPeer = new Peer(undefined, {
-//     host: 'https://pococare1.onrender.com/',
-//     port: '8081'
-// })
 
 const myPeer = new Peer();
 

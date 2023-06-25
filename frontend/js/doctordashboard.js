@@ -2,6 +2,8 @@ const url = "https://pococare-assignment.vercel.app/"
 
 const backendURL = "https://pococare1.onrender.com/"
 
+//const backendURL = "http://localhost:8080/"
+
 if (!localStorage.getItem("token")) {
     alert("Please login")
     window.location.href = `./signin.html`;
@@ -83,6 +85,7 @@ function renderAppointments(appointments) {
 
             cancelAppointmentBtn.addEventListener('click', () => {
                 const confirmDelete = confirm('Are you sure you want to delete this appointment?');
+                spinner.removeAttribute('hidden');
                 if (confirmDelete) {
                     const appointmentId = appointment._id;
                     const token = localStorage.getItem('token');
@@ -96,8 +99,9 @@ function renderAppointments(appointments) {
                         .then(response => {
                             if (response.ok) {
                                 console.log('Appointment deleted');
+                                spinner.setAttribute('hidden', '');
                                 alert('Appointment deleted')
-                                fetchAppointments()
+                                fetchAppointments(id)
                             } else {
                                 console.error('Failed to delete appointment');
                             }
@@ -124,14 +128,18 @@ changeVideocallButton.addEventListener('click', () => {
     let obj = {}
     if (document.querySelector("#videoCall").textContent == "YES") {
         obj = {
-            videoCall: "NO"
+            videoCall: "NO",
+            role: "doctor"
         }
     }
     else {
         obj = {
-            videoCall: "YES"
+            videoCall: "YES",
+            role: "doctor"
         }
     }
+
+    spinner.removeAttribute('hidden');
     fetch(`${backendURL}doctors/update/${id}`, {
         method: 'PATCH',
         headers: {
@@ -141,6 +149,7 @@ changeVideocallButton.addEventListener('click', () => {
     })
         .then(response => {
             if (response.ok) {
+                spinner.setAttribute('hidden', '');
                 alert("Successfull")
                 const id = localStorage.getItem('id')
 

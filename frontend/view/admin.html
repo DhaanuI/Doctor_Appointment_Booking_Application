@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN_PANEL</title>
+    <style>
+        .container {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .form {
+            width: 400px;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 0 10px;
+        }
+
+        .form label {
+            display: block;
+            text-align: left;
+            margin-bottom: 5px;
+        }
+
+        .form input[type="text"],
+        .form input[type="password"] {
+            width: 98%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .form button {
+            width: 100%;
+            font-size: 16px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            font-family: 'Roboto', sans-serif;
+        }
+
+
+        .form button:hover {
+            background-color: #0056b3;
+        }
+
+        .adminLogin button {
+            margin-top: 133px
+        }
+
+
+        #spinner:not([hidden]) {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #spinner::after {
+            content: "";
+            width: 80px;
+            height: 80px;
+            border: 2px solid #f3f3f3;
+            border-top: 3px solid #f25a41;
+            border-radius: 100%;
+            will-change: transform;
+            animation: spin 1s infinite linear
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        #userButton {
+            font-size: 16px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+</body>
+<h1>Admin Panel</h1>
+<button id="userButton">Login as User</button>
+<div class="container">
+    <div class="form adminLogin">
+        <h2>Login as ADMIN</h2>
+        <form action="">
+            <label for="adminEmail">Email</label>
+            <input type="text" id="adminLoginEmail" name="email" required>
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminLoginPassword" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="form admin">
+        <h2>REGISTER as ADMIN</h2>
+        <form action="" method="">
+            <label for="adminName">Name</label>
+            <input type="text" id="adminRegName" name="name" required>
+            <label for="adminEmail">Email</label>
+            <input type="text" id="adminRegEmail" name="email" required>
+            <label for="adminPassword">Password</label>
+            <input type="password" id="adminRegPassword" name="password" required>
+            <label for="adminImage">Image (URL)</label>
+            <input type="text" id="adminRegImage" name="image" required>
+            <button type="submit">Signup</button>
+        </form>
+    </div>
+
+    <!-- this will show our spinner -->
+    <div hidden id="spinner"></div>
+</div>
+
+</html>
+
+<script>
+
+    const backendURL = "http://localhost:8080/"
+
+    const spinner = document.getElementById("spinner");
+
+    document.querySelector("#userButton").addEventListener("click", () => {
+        window.location.href = `./signin.html`
+    })
+
+    const loginForm = document.querySelector('.adminLogin');
+
+    loginForm.addEventListener('submit', (e) => {
+        spinner.removeAttribute('hidden');
+        e.preventDefault();
+
+        const adminEmail = document.getElementById('adminLoginEmail').value;
+        const adminPassword = document.getElementById('adminLoginPassword').value;
+
+
+        const adminData = {
+            email: adminEmail,
+            password: adminPassword,
+        };
+
+        fetch(`${backendURL}admin/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(adminData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                spinner.setAttribute('hidden', '');
+                let token = data.token;
+                localStorage.setItem("token", token)
+                localStorage.setItem("name", data.name)
+                localStorage.setItem("id", data.id)
+
+                adminEmail == ""
+                adminPassword == ""
+                alert(data.message)
+                window.location.href = `./viewadmin.html`
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+
+    const adminReg = document.querySelector('.admin');
+
+    adminReg.addEventListener('submit', (e) => {
+        spinner.removeAttribute('hidden');
+        e.preventDefault();
+
+        const adminName = document.getElementById('adminRegName').value;
+        const adminEmail = document.getElementById('adminRegEmail').value;
+        const adminPassword = document.getElementById('adminRegPassword').value;
+        const adminImage = document.getElementById('adminRegImage').value;
+
+        const adminData = {
+            name: adminName,
+            email: adminEmail,
+            password: adminPassword,
+            image: adminImage
+        };
+
+        fetch(`${backendURL}admin/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(adminData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                spinner.setAttribute('hidden', '');
+                console.log(data)
+                alert(data.message + " " + "Login Now")
+                window.location.href = `./admin.html`
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+
+
+</script>

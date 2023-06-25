@@ -12,7 +12,7 @@ appointmentRoute.use(authenticate);
 appointmentRoute.get("/", async (req, res) => {
     try {
         let data = await AppointmentModel.find().populate("patientId doctorId")
-        res.status(200).send({ "ALL Appointments": data })
+        res.status(200).send({ "Appointments": data })
     }
     catch (err) {
         res.status(404).send({ "ERROR": err })

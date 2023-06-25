@@ -8,6 +8,12 @@ document.querySelector("#signup").addEventListener("click", () => {
     window.location.href = `./signup.html`
 })
 
+admin
+document.querySelector("#admin").addEventListener("click", () => {
+    window.location.href = `./admin.html`
+})
+
+
 const patientForm = document.querySelector(".patient");
 
 patientForm.addEventListener("submit", async (e) => {

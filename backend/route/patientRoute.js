@@ -41,6 +41,9 @@ patientRoute.post("/register", async (req, res) => {
 patientRoute.post("/login", async (req, res) => {
     const { email, password } = req.body
     let data = await PatientModel.findOne({ email })
+    if (!data) {
+        return res.send({ "message": "No user found" })
+    }
     try {
         bcrypt.compare(password, data.password, function (err, result) {
             if (result) {
@@ -64,8 +67,8 @@ patientRoute.post("/login", async (req, res) => {
     }
 })
 
-
-patientRoute.patch("/update/:id", async (req, res) => {
+// implementation of Role based authorization - either Patient or Admin can only modify changes in their information
+patientRoute.patch("/update/:id", authorise(["patient", "admin"]), async (req, res) => {
     const ID = req.params.id;
     const payload = req.body;
     try {
@@ -79,10 +82,9 @@ patientRoute.patch("/update/:id", async (req, res) => {
 })
 
 
-
-patientRoute.delete("/delete/:id", async (req, res) => {
+// implementation of Role based authorization - either Patient or Admin can only modify changes in their information
+patientRoute.delete("/delete/:id", authorise(["patient", "admin"]), async (req, res) => {
     const ID = req.params.id;
-
     try {
         await PatientModel.findByIdAndDelete({ _id: ID })
         res.send({ "message": "Particular data has been deleted" })

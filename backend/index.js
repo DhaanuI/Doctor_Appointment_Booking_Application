@@ -16,6 +16,7 @@ const { connection } = require("./config/db");
 const { patientRoute } = require("./route/patientRoute");
 const { doctorRoute } = require("./route/doctorRoute");
 const { appointmentRoute } = require("./route/appointmentRoute");
+const { adminRoute } = require("./route/adminRoute");
 
 
 // home route
@@ -42,6 +43,8 @@ app.post("/email", async (req, res) => {
 app.use("/patients", patientRoute)
 app.use("/doctors", doctorRoute)
 app.use("/appointments", appointmentRoute)
+
+app.use("/admin", adminRoute)
 
 app.get('/video', (req, res) => {
     res.redirect(`/video/${uuidV4()}`)

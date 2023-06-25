@@ -9,7 +9,7 @@ const fs = require("fs")
 require("dotenv").config();
 
 const { authorise } = require("../authorize")
-const { client } = require("../config/db")
+
 const { DoctorModel } = require("../model/DoctorModel");
 const { authenticate } = require("../middleware/authentication.middleware")
 
@@ -40,6 +40,9 @@ doctorRoute.post("/register", async (req, res) => {
 doctorRoute.post("/login", async (req, res) => {
     const { email, password } = req.body
     let data = await DoctorModel.findOne({ email })
+    if (!data) {
+        return res.send({ "message": "No user found" })
+    }
     try {
         bcrypt.compare(password, data.password, function (err, result) {
             if (result) {
@@ -64,7 +67,7 @@ doctorRoute.post("/login", async (req, res) => {
 })
 
 
-doctorRoute.patch("/update/:id", async (req, res) => {
+doctorRoute.patch("/update/:id", authorise(["doctor", "admin"]), async (req, res) => {
     const ID = req.params.id;
     const payload = req.body;
     try {
@@ -77,7 +80,7 @@ doctorRoute.patch("/update/:id", async (req, res) => {
     }
 })
 
-doctorRoute.delete("/delete/:id", async (req, res) => {
+doctorRoute.delete("/delete/:id", authorise(["doctor", "admin"]), async (req, res) => {
     const ID = req.params.id;
 
     try {

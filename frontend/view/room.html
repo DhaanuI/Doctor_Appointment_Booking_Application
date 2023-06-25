@@ -26,7 +26,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 50px
+            margin-top: 20px
         }
 
         button {
@@ -43,6 +43,21 @@
         button:hover {
             background-color: #297fb8;
         }
+
+        h2 {
+            color: red
+        }
+
+        body {
+            font-family: "Roboto", Arial, sans-serif;
+            background-color: #e6ebee;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+
+        }
     </style>
 </head>
 
@@ -50,14 +65,20 @@
     <div>
         <h1>VIDEO CHAT ROOM</h1>
     </div>
+    <h2>Refresh only if the other user has left the meet</h2>
+
+    <div id="endButtonDiv">
+        <button onclick="redirectToDashboard()">Go back to DASHBOARD</button>
+    </div>
 
     <div id="video-grid"></div>
 
-    <button id="toggle-video-button">Start/Stop Video</button>
+    <br>
 
-    <div id="endButtonDiv">
-        <button onclick="redirectToDashboard()">END VIDEO - Go back to DASHBOARD</button>
-    </div>
+    <button id="toggle-video-button">Start/Stop Video</button>
+    <br> <br>
+    <button id="toggle-audio-button">Mute/UnMute</button>
+
 </body>
 
 </html>
@@ -101,28 +122,43 @@
             connectToNewUser(userId, stream)
         })
 
-        // Toggle video button functionality
         const toggleVideoButton = document.getElementById('toggle-video-button');
         toggleVideoButton.addEventListener('click', toggleVideoStream);
 
         function toggleVideoStream() {
-            const videoTrack = stream.getVideoTracks()[0]; // Get the video track from the stream
+            const videoTrack = stream.getVideoTracks()[0];
 
             if (videoTrack.enabled) {
-                // Video is currently enabled, so disable it
                 videoTrack.enabled = false;
-                myVideo.srcObject.getVideoTracks()[0].enabled = false; // Disable local video
+                myVideo.srcObject.getVideoTracks()[0].enabled = false;
                 toggleVideoButton.textContent = 'Start Video';
             } else {
-                // Video is currently disabled, so enable it
                 videoTrack.enabled = true;
-                myVideo.srcObject.getVideoTracks()[0].enabled = true; // Enable local video
+                myVideo.srcObject.getVideoTracks()[0].enabled = true;
                 toggleVideoButton.textContent = 'Stop Video';
+            }
+        }
+
+        const toggleAudioButton = document.getElementById('toggle-audio-button');
+
+        toggleAudioButton.addEventListener('click', toggleAudio);
+
+        function toggleAudio() {
+            const audioTrack = stream.getAudioTracks()[0];
+
+            if (audioTrack.enabled) {
+                audioTrack.enabled = false;
+                toggleAudioButton.textContent = 'Unmute';
+            } else {
+                audioTrack.enabled = true;
+                toggleAudioButton.textContent = 'Mute';
             }
         }
     }).catch((err) => {
         console.log(err);
     });
+
+
 
 
 

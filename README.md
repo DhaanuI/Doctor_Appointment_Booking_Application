@@ -18,8 +18,27 @@
 * Patient & Doctors - Delete Appointment DELETE
 * Patients - Start Video call instantly with the Doctors available
 * Doctors can toggle between Video call availability
-* Nodemailer feature to let Doctor know the video call link via email
+* Nodemailer feature to let the Doctor know the video call link via email
 
+## Flow of this Application:
+*  Register as a Patient or Doctor
+*  Login as Patient
+*  View All Doctors
+*  Book an appointment to any of the Doctor
+*  Able to modify or delete a booked appointment
+*  If Doctor has made Video call availability YES then patient can start a Video call
+*  Once about to start, Video call meet link will be sent to Doctor of their email address
+*  Doctor joins meet using the received meet link via email
+*  Patient and Doctor can have a video chat in unique room
+*  Able to start/stop video & mute/unmute audio
+*  End video and back to Dashboard
+
+*  Login as Doctor
+*  Able to change Videocall availability
+*  View appointments booked
+
+*  Logout
+   
 
 ## Tech Stacks used:
 [![My Skills](https://skillicons.dev/icons?i=js,nodejs,express,mongodb,html,css)](https://skillicons.dev)

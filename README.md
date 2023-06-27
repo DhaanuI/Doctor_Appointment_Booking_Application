@@ -7,8 +7,22 @@
 
 ## Demonstration Video: https://drive.google.com/file/d/1sAvTTrGPlbfzjCyN4ZQAwE8ncMNFI1z3/view?usp=sharing
 
- ### <-- scroll down last to see a few Doctors/Patients' Dummy data -->
+# Use these credentials to check out features:
 
+## Login as a Patient -
+email : user1@gmail.com  password : user1
+
+email : user2@gmail.com  password : user1
+
+email : patient11@gmail.com password: patient11
+
+
+## Login as a Doctor -
+email : doc1@gmail.com  password : doc1   --> has few appointments already
+
+email : pococare@gmail.com  password : pococare
+
+## If you wish to try the Video Call feature, Please register your email as Doctor and log in with any of the above dummy emails as a Patient and then proceed because Nodemailer doesn't send an email if Doctor's email used is a dummy.
 
 ### Features Implemented:
 * Authentication - JWT-based token
@@ -56,10 +70,10 @@
 # Backend deployed using RENDER https://pococare1.onrender.com/
 
 # Home Page
-![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/ffc52ffb-cc7b-48c6-8aec-cf771747e08b)
+![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/fc64ac55-26d5-438f-ba2c-39c75b6e5aa8)
 
-# Click on Sign Up to Register
-![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/fa1540bf-e61b-4a20-aa09-0b3aae72ed93)
+# Login Page
+![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/791a559d-0908-40f4-aefd-90867e8383d5)
 
 # If you are a Doctor
 
@@ -70,9 +84,6 @@
 ![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/f30893d8-d55d-4e89-a487-1fa42342c0ef)
 
 
-# Click on Login to sign in
-
-![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/55acee29-25ed-43a8-b918-9362cb833a80)
 
 # Patient Dashboard - Authenticated Route 
 ![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/43c24b4a-126b-4e0c-8345-f0aa88927182)
@@ -90,9 +101,9 @@
 ![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/76f9def2-1602-4b13-8b22-2d6f60ea1405)
 
 
- ## Room page where patient and doctor can contact via Video call (here both people videos will be shown)
+## Room page where patient and doctor can contact via Video call (here both people videos will be shown)
 
-![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/63e076b0-3d1c-4e00-b32c-1c336f33dfac)
+![image](https://github.com/DhaanuI/Pococare_assignment/assets/112754832/b0efab74-d38d-4d54-8245-a108fa33588c)
 
 
 
@@ -139,28 +150,6 @@ api - https://pococare1.onrender.com/
 | DELETE | api/appointments/delete/:id | To delete appointment
 | GET | api/appointments/docapp/:id | To get the appointments based on specific Doctor | 200
 | GET | api/appointments/patapp/:id | To get the appointments based on specific Patient | 200
-
-
-
-
-# Use these credentials to check out features:
-
-## Login as a Patient -
-email : user1@gmail.com  password : user1
-
-email : user2@gmail.com  password : user1
-
-email : patient11@gmail.com password: patient11
-
-
-## Login as a Doctor -
-email : doc1@gmail.com  password : doc1   --> has few appointments already
-
-email : pococare@gmail.com  password : pococare
-
-## You can use the above emails credentials to verify CRUD operations
-
-
 
 
 

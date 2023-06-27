@@ -1,4 +1,4 @@
-const backendURL = "http://localhost:8080/"
+const backendURL = "https://pococare1.onrender.com/"
 
 document.querySelector(".admin-name").innerHTML = "Hi " + localStorage.getItem('name')
 
@@ -43,6 +43,53 @@ function renderDoctors(doctors) {
         doctorSpecialization.textContent = "Specialization: " + doctor.specialization;
         doctorCard.appendChild(doctorSpecialization);
 
+        const videoCallAvailability = document.createElement('p');
+        videoCallAvailability.className = "change"+doctor._id;
+        videoCallAvailability.textContent = "Video Call Availability: " + doctor.videoCall;
+        doctorCard.appendChild(videoCallAvailability);
+
+        const videoToggle = document.createElement('button');
+        videoToggle.textContent = 'Change Availability';
+        videoToggle.className = 'doctor-change';
+
+        videoToggle.addEventListener('click', (e) => {
+            let obj = {}
+            let id= doctor._id
+            if (document.getElementsByClassName(`change${doctor._id}`)[0].innerText == "Video Call Availability: YES") {
+                obj = {
+                    videoCall: "NO",
+                    role: "admin"
+                }
+            }
+            else {
+                obj = {
+                    videoCall: "YES",
+                    role: "admin"
+                }
+            }
+           
+            fetch(`${backendURL}doctors/update/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert("Video Call Availability changed")
+                        fetchDoctors()
+                    } else {
+                        alert("Error")
+                    }
+                })
+                .catch(error => {
+                    console.log('An error', error);
+                });
+        });
+
+        doctorCard.appendChild(videoToggle);
+
         const removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
         removeButton.className = 'doctor-remove';
@@ -59,20 +106,15 @@ function renderDoctors(doctors) {
                         alert("Doctor removed")
                         patientCard.remove();
                     } else {
-
                         console.error('Error deleting doctor:', response.statusText);
                     }
                 })
                 .catch(error => {
-                    // Code to handle fetch error
                     console.error('Error:', error);
                 });
         });
 
-
         doctorCard.appendChild(removeButton);
-
-
 
         doctorsContainer.appendChild(doctorCard);
     });
@@ -274,5 +316,62 @@ logoutButton.addEventListener('click', () => {
         })
         .catch(error => {
             console.log('An error occurred during logout:', error);
+        });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+changeVideocallButton.addEventListener('click', () => {
+    const id = localStorage.getItem('id')
+    let obj = {}
+    if (document.querySelector("#videoCall").textContent == "YES") {
+        obj = {
+            videoCall: "NO",
+            role: "doctor"
+        }
+    }
+    else {
+        obj = {
+            videoCall: "YES",
+            role: "doctor"
+        }
+    }
+
+    spinner.removeAttribute('hidden');
+    fetch(`${backendURL}doctors/update/${id}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    })
+        .then(response => {
+            if (response.ok) {
+                spinner.setAttribute('hidden', '');
+                alert("Successfull")
+                const id = localStorage.getItem('id')
+
+                fetchYourdata(id)
+            } else {
+                alert("Error")
+            }
+        })
+        .catch(error => {
+            console.log('An error', error);
         });
 });

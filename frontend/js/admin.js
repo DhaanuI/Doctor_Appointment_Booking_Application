@@ -1,10 +1,14 @@
 
-const backendURL = "http://localhost:8080/"
+const backendURL = "https://pococare1.onrender.com/"
 
 const spinner = document.getElementById("spinner");
 
 document.querySelector("#userButton").addEventListener("click", () => {
     window.location.href = `./signin.html`
+})
+
+document.querySelector("#index h1").addEventListener("click", () => {
+    window.location.href = `../index.html`
 })
 
 const loginForm = document.querySelector('.adminLogin');
@@ -22,6 +26,14 @@ loginForm.addEventListener('submit', (e) => {
         password: adminPassword,
     };
 
+    let isValidationComplete = false;
+    let validationTimeout = setTimeout(() => {
+        if (!isValidationComplete) {
+            spinner.setAttribute('hidden', '');
+            alert("Validation is taking longer than expected. Please retry.");
+        }
+    }, 6000);
+
     fetch(`${backendURL}admin/login`, {
         method: 'POST',
         headers: {
@@ -31,16 +43,28 @@ loginForm.addEventListener('submit', (e) => {
     })
         .then(response => response.json())
         .then(data => {
-            spinner.setAttribute('hidden', '');
-            let token = data.token;
-            localStorage.setItem("token", token)
-            localStorage.setItem("name", data.name)
-            localStorage.setItem("id", data.id)
+            clearTimeout(validationTimeout);
+            isValidationComplete = true;
 
+            spinner.setAttribute('hidden', '');
             adminEmail == ""
             adminPassword == ""
-            alert(data.message)
-            window.location.href = `./viewadmin.html`
+            if (data.token) {
+                let token = data.token;
+                localStorage.setItem("token", token)
+                localStorage.setItem("name", data.name)
+                localStorage.setItem("id", data.id)
+
+                adminEmail == ""
+                adminPassword == ""
+                alert(data.message)
+                window.location.href = `./viewadmin.html`
+            }
+            else {
+                adminEmail == ""
+                adminPassword == ""
+                data.message ? alert("Invalid Credentials") : alert("Invalid Credentials")
+            }
         })
         .catch(error => {
             console.error(error);

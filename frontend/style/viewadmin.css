@@ -158,7 +158,7 @@ button {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: rgb(238, 217, 217);
 }
 
 .navbar h1 {
@@ -205,4 +205,9 @@ body {
 
 .cancel-appointment-btn {
     background-color: #f44336;
+}
+
+body {
+    font-family: Verdana, Geneva, sans-serif;
+    background-color: #f4f4f4;
 }

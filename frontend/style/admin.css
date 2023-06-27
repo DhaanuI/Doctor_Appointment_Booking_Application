@@ -40,9 +40,9 @@
 
 body {
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     background-color: #f4f4f4;
-    font-family: 'Roboto', sans-serif;
+    margin:0
 }
 
 
@@ -96,4 +96,24 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top:16px
+}
+
+#userButton:hover {
+    background-color: #9ab7d6;
+    color: black;
+    font-weight: bolder;
+}
+
+nav{
+    display:flex;
+    justify-content: space-between;
+    background-color: rgb(238, 217, 217);
+    padding-right:10px;
+    padding-left:10px
+}
+
+#index h1{
+    cursor:pointer;
+    color: #007bff;
 }

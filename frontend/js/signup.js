@@ -5,8 +5,17 @@ const backendURL = "https://pococare1.onrender.com/"
 const spinner = document.getElementById("spinner");
 
 
+
+document.querySelector("#index h1").addEventListener("click", () => {
+    window.location.href = `../index.html`
+})
+
 document.querySelector("#signin").addEventListener("click", () => {
     window.location.href = `./signin.html`
+})
+
+document.querySelector("#home").addEventListener("click", () => {
+    window.location.href = `../index.html`
 })
 
 function showDoctorForm() {
@@ -76,7 +85,7 @@ doctorForm.addEventListener('submit', (e) => {
         email: doctorEmail,
         password: doctorPassword,
         specialisation: doctorSpecialisation,
-        videoCall:doctorVideocall,
+        videoCall: doctorVideocall,
         image: doctorImage
     };
 

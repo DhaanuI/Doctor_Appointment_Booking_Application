@@ -8,9 +8,18 @@ document.querySelector("#signup").addEventListener("click", () => {
     window.location.href = `./signup.html`
 })
 
-admin
+document.querySelector("#index h1").addEventListener("click", () => {
+    window.location.href = `../index.html`
+})
+
+
+// admin
 document.querySelector("#admin").addEventListener("click", () => {
     window.location.href = `./admin.html`
+})
+
+document.querySelector("#home").addEventListener("click", () => {
+    window.location.href = `../index.html`
 })
 
 
@@ -30,6 +39,15 @@ patientForm.addEventListener("submit", async (e) => {
         password: enteredPass
     }
 
+    let isValidationComplete = false;
+    let validationTimeout = setTimeout(() => {
+        if (!isValidationComplete) {
+            spinner.setAttribute('hidden', '');
+            alert("Validation is taking longer than expected. Please wait.");
+        }
+    }, 6000);
+
+
     let verifyingLogin = await fetch(`${backendURL}patients/login`, {
         method: "POST",
         headers: {
@@ -37,6 +55,9 @@ patientForm.addEventListener("submit", async (e) => {
         },
         body: JSON.stringify(obj)
     })
+
+    clearTimeout(validationTimeout);
+    isValidationComplete = true;
 
     let res = await verifyingLogin.json()
     spinner.setAttribute('hidden', '');
@@ -73,6 +94,14 @@ doctorForm.addEventListener("submit", async (e) => {
         password: enteredPass
     }
 
+    let isValidationComplete = false;
+    let validationTimeout = setTimeout(() => {
+        if (!isValidationComplete) {
+            spinner.setAttribute('hidden', '');
+            alert("Validation is taking longer than expected. Please wait.");
+        }
+    }, 6000);
+
     let verifyingLogin = await fetch(`${backendURL}doctors/login`, {
         method: "POST",
         headers: {
@@ -80,6 +109,9 @@ doctorForm.addEventListener("submit", async (e) => {
         },
         body: JSON.stringify(obj)
     })
+
+    clearTimeout(validationTimeout);
+    isValidationComplete = true;
 
     let res = await verifyingLogin.json()
     spinner.setAttribute('hidden', '');

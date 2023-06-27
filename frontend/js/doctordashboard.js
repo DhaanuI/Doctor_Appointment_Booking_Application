@@ -123,7 +123,6 @@ function renderAppointments(appointments) {
 const changeVideocallButton = document.querySelector('#changeVideocall');
 
 changeVideocallButton.addEventListener('click', () => {
-
     const id = localStorage.getItem('id')
     let obj = {}
     if (document.querySelector("#videoCall").textContent == "YES") {
@@ -181,7 +180,7 @@ logoutButton.addEventListener('click', () => {
     })
         .then(response => {
             if (response.ok) {
-                window.location.href = `./signin.html`;
+                window.location.href = `../index.html`;
                 alert("Logging you out")
             } else {
                 console.log('Logout request failed.');

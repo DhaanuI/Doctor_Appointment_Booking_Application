@@ -381,7 +381,7 @@ logoutButton.addEventListener('click', () => {
     })
         .then(response => {
             if (response.ok) {
-                window.location.href = `./signin.html`;
+                window.location.href = `../index.html`;
                 alert("Logging you out")
             } else {
                 console.log('Logout request failed.');

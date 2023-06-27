@@ -8,13 +8,14 @@
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: Verdana, Geneva, sans-serif;
             background-color: #f4f4f4;
+            margin: 0
         }
 
         h1 {
             font-size: 28px;
-            margin-top: 50px;
+            /* margin-top: 50px; */
         }
 
         button {
@@ -34,19 +35,137 @@
             font-weight: bolder;
         }
 
-        div {
+        /* div {
             margin-top: 100px;
+        } */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            background-color: rgb(238, 217, 217);
+        }
+
+        nav h1 {
+            color: #007bff;
+            margin-left: 50px
+        }
+
+        #buttons {
+            margin-right: 30px
+        }
+
+        #login {
+            margin-right: 20px
+        }
+
+        #maincard {
+            margin-bottom: 50px
+        }
+
+        #services img {
+            width: 50%;
+            height: 400px
+        }
+
+        #services h1 {
+            background-color: #8ab7e7;
+            font-size: 35px;
+            font-family: Verdana, Geneva, sans-serif;
+        }
+
+        #index h1{
+            cursor:pointer
+        }
+
+        #index h1,
+        #maincard h1{
+            font-family: Verdana, Geneva, sans-serif;
+        }
+
+        #offer {
+            font-size: 80px;
+        }
+
+        footer {
+            background-color: rgb(238, 217, 217);
+            margin-top: 100px;
+            padding: 40px
+        }
+
+        a {
+            text-decoration: none;
+            font-size: 20px;
         }
     </style>
 </head>
 
 <body>
-    <h1>Welcome to Doctor's Appointment Booking Application</h1>
-    <div>
-        <button id="login">LOGIN</button>
+    <nav>
+        <div id="index">
+            <h1>WeCare</h1>
+        </div>
 
-        <button id="signup">SIGNUP</button>
+        <div id="buttons">
+            <button id="login">LOGIN</button>
+
+            <button id="signup">SIGNUP</button>
+        </div>
+    </nav>
+
+    <div id="maincard">
+        <div>
+            <h1>Welcome to Doctor Appointment Booking Application</h1>
+        </div>
+
+        <div>
+            <img src="https://www.pococare.com/Images/banner_image.png" alt="wecare_image">
+        </div>
     </div>
+
+    <h1 id="offer">What we offer</h1>
+
+    <div id="services">
+        <div>
+            <div>
+                <h1>Best Doctors Available All Over India</h1>
+            </div>
+            <div>
+                <img src=" https://img.freepik.com/free-photo/doctor-nurses-special-equipment_23-2148980721.jpg?w=740&t=st=1687871336~exp=1687871936~hmac=cafebc5917234993975d2efff33e262d206fea3c6d412d1c81b4558437349277"
+                    alt="">
+            </div>
+        </div>
+
+        <br>
+        <div>
+            <div>
+                <h1>Just Signup and Start Booking appointments</h1>
+            </div>
+
+            <div>
+                <img src="https://img.freepik.com/free-photo/young-doctor-supporting-his-patient_1098-2237.jpg?w=740&t=st=1687871522~exp=1687872122~hmac=9b9f7ba79749f10e06f6beef15573378b2580eaba5912f123f461a0317d58ea8"
+                    alt="">
+            </div>
+        </div>
+        <br>
+        <div>
+            <div>
+                <h1>Here, Our Doctors offer Video Call Consultations, Cool Isnt it?</h1>
+            </div>
+
+            <div>
+                <img src="https://img.freepik.com/free-photo/old-disabled-woman-lying-hospital-bed-having-online-video-call-with-doctor-nurse-is-her_482257-20630.jpg?w=826&t=st=1687871700~exp=1687872300~hmac=0eda02317e5edf30b301b74a3acf912b496e8e67032765f2bc11d63e44e3fd39"
+                    alt="">
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <a href="https://github.com/DhaanuI">Follow us </a>
+        <br>
+        <br>
+        <a href="https://dhaanui.github.io/">For More information</a>
+    </footer>
 </body>
 
 </html>

@@ -1,12 +1,12 @@
 body {
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     background-color: #f4f4f4;
 }
 
 h1 {
     font-size: 28px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
 
 .container {
@@ -30,7 +30,8 @@ h1 {
 }
 
 .form input[type="text"],
-.form input[type="password"] {
+.form input[type="password"],
+.form input[type="email"] {
     width: 98%;
     padding: 8px;
     margin-bottom: 10px;
@@ -49,9 +50,10 @@ h1 {
     cursor: pointer;
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
+#index h1 {
+    cursor: pointer
 }
+
 
 .form button:hover {
     background-color: #0056b3;
@@ -68,7 +70,8 @@ body {
     font-weight: bold;
 }
 
-#admin {
+#admin,
+#home {
     font-size: 16px;
     padding: 10px;
     background-color: #007bff;
@@ -79,7 +82,35 @@ body {
     font-weight: bold;
 }
 
+body {
+    margin: 0
+}
 
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(238, 217, 217);
+}
+
+nav h1 {
+    color: #007bff;
+    margin-left: 50px
+}
+
+#buttons button {
+    margin-top: 20px;
+    margin-right: 10px
+}
+
+#admin:hover,
+#signup:hover,
+#home:hover {
+    background-color: #9ab7d6;
+    color: black;
+    font-weight: bolder;
+}
 
 
 #spinner:not([hidden]) {

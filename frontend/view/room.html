@@ -49,8 +49,8 @@
         }
 
         body {
-            font-family: "Roboto", Arial, sans-serif;
-            background-color: #e6ebee;
+            font-family: Verdana, Geneva, sans-serif;
+            background-color: #f4f4f4;
         }
 
         h1,
@@ -101,23 +101,27 @@
     const myPeer = new Peer();
 
     const myVideo = document.createElement('video')
-    myVideo.muted = true
+    myVideo.muted = true   // mute our own audio so that we wont be listening to our own speech
 
     const peers = {}
+
+
     navigator.mediaDevices.getUserMedia({
         video: true,
         audio: true
     }).then(stream => {
-        addVideoStream(myVideo, stream)
+        addVideoStream(myVideo, stream)   // render video
 
+        // listens or receives other user video to render on our screen
         myPeer.on('call', call => {
-            call.answer(stream)
+            call.answer(stream)                             // it is like answering video call
             const video = document.createElement('video')
             call.on('stream', userVideoStream => {
-                addVideoStream(video, userVideoStream)
+                addVideoStream(video, userVideoStream)      // and send back video to them
             })
         })
 
+        // sends video to other user
         socket.on('user-connected', userId => {
             connectToNewUser(userId, stream)
         })
@@ -166,17 +170,18 @@
         if (peers[userId]) peers[userId].close()
     })
 
+    // when user joins 
     myPeer.on('open', id => {
-        socket.emit('join-room', ROOM_ID, id)
+        socket.emit('join-room', ROOM_ID, id) // inturn calls user-connected
     })
 
     function connectToNewUser(userId, stream) {
-        const call = myPeer.call(userId, stream)
+        const call = myPeer.call(userId, stream)           // sends our video to others
         const video = document.createElement('video')
-        call.on('stream', userVideoStream => {
-            addVideoStream(video, userVideoStream)
+        call.on('stream', userVideoStream => {            // they sends their video 
+            addVideoStream(video, userVideoStream)        // inturn calls this function to render
         })
-        call.on('close', () => {
+        call.on('close', () => {                         // when other left, video will be removed
             video.remove()
         })
 

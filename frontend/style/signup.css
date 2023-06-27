@@ -1,22 +1,42 @@
 body {
     text-align: center;
-    font-family: Arial, sans-serif;
+    margin: 0;
+    font-family: Verdana, Geneva, sans-serif;
     background-color: #f4f4f4;
 }
 
 h1 {
     font-size: 28px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
 }
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(238, 217, 217);
+}
+
+nav h1 {
+    color: #007bff;
+    margin-left: 50px
+}
+
+#buttons button {
+    margin-top: 20px;
+    margin-right: 10px
+}
+
+#signin:hover,#home:hover {
+    background-color: #9ab7d6;
+    color: black;
+    font-weight: bolder;
+}
+
 
 .container {
     margin-top: 100px;
     display: flex;
     justify-content: center;
-}
-
-body {
-    font-family: 'Roboto', sans-serif;
 }
 
 .form {
@@ -35,6 +55,7 @@ body {
 
 .form input[type="text"],
 .form input[type="password"],
+.form input[type="email"],
 .form select {
     width: 98%;
     padding: 8px;
@@ -82,7 +103,7 @@ body {
     background-color: #0056b3;
 }
 
-#signin {
+#signin, #home {
     font-size: 16px;
     padding: 10px;
     background-color: #007bff;
@@ -92,6 +113,11 @@ body {
     cursor: pointer;
     font-weight: bold;
 }
+
+#index h1{
+    cursor:pointer
+}
+
 
 
 

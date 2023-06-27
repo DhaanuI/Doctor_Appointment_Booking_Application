@@ -1,4 +1,4 @@
-# Pococare_assignment
+# Doctor-s_Appointment_Booking_Application
 
 ## A Doctor's Appointment Booking System -lets you register and Login and be able to view Doctors, book appointments, view/reschedule and also delete appointments.
 

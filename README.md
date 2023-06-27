@@ -26,7 +26,7 @@
 *  View All Doctors
 *  Book an appointment to any of the Doctor
 *  Able to modify or delete a booked appointment
-*  If Doctor has made Video call availability YES then patient can start a Video call
+*  If Doctor has made Video call availability YES & email is genuine , then patient can start a Video call
 *  Once about to start, Video call meet link will be sent to Doctor of their email address
 *  Doctor joins meet using the received meet link via email
 *  Patient and Doctor can have a video chat in unique room

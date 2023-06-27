@@ -5,6 +5,7 @@
 
 ### PS: As the backend deployed using Render, there is more than an expected delay, apologies for the inconvenience!
 
+## Demonstration Video: https://drive.google.com/file/d/1sAvTTrGPlbfzjCyN4ZQAwE8ncMNFI1z3/view?usp=sharing
 
  ### <-- scroll down last to see a few Doctors/Patients' Dummy data -->
 
@@ -159,7 +160,7 @@ email : pococare@gmail.com  password : pococare
 
 ## You can use the above emails credentials to verify CRUD operations
 
-## Demonstration Video: https://drive.google.com/file/d/1sAvTTrGPlbfzjCyN4ZQAwE8ncMNFI1z3/view?usp=sharing
+
 
 
 

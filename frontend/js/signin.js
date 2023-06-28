@@ -42,8 +42,7 @@ patientForm.addEventListener("submit", async (e) => {
     let isValidationComplete = false;
     let validationTimeout = setTimeout(() => {
         if (!isValidationComplete) {
-            spinner.setAttribute('hidden', '');
-            alert("Validation is taking longer than expected. Please Retry.");
+            alert("Validation is taking longer than expected. Please wait for few more seconds.");
         }
     }, 6000);
 
@@ -97,8 +96,7 @@ doctorForm.addEventListener("submit", async (e) => {
     let isValidationComplete = false;
     let validationTimeout = setTimeout(() => {
         if (!isValidationComplete) {
-            spinner.setAttribute('hidden', '');
-            alert("Validation is taking longer than expected. Please Retry.");
+            alert("Validation is taking longer than expected. Please wait for few more seconds.");
         }
     }, 6000);
 
